@@ -130,7 +130,7 @@ export default function PortfolioGabriel() {
           <motion.div initial="hidden" animate="visible" variants={fadeUp}>
             <h1 className="mt-6 text-4xl font-black leading-tight md:text-6xl">
               Criando experiências{" "}
-              <span className="bg-gradient-to-r from-cyan-300 to-blue-400 bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-cyan-300 to-blue-400 bg-clip-text text-transparent">
                 web e mobile
               </span>{" "}
               com foco em qualidade.
@@ -198,9 +198,9 @@ export default function PortfolioGabriel() {
             variants={fadeUp}
             className="relative"
           >
-            <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-cyan-400/20 to-blue-500/10 blur-2xl" />
-            <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 p-5 shadow-2xl">
-              <div className="rounded-[1.5rem] border border-white/10 bg-slate-900/90 p-6">
+            <div className="absolute -inset-4 rounded-4xl-gradient-to-br from-cyan-400/20 to-blue-500/10 blur-2xl" />
+            <div className="relative overflow-hidden rounded-4xl border border-white/10 bg-white/5 p-5 shadow-2xl">
+              <div className="rounded-3xl border border-white/10 bg-slate-900/90 p-6">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm text-slate-400">
@@ -290,7 +290,7 @@ export default function PortfolioGabriel() {
               </div>
             </div>
 
-            <div className="rounded-[2rem] border border-white/10 bg-gradient-to-br from-white/5 to-slate-900 p-8 md:col-span-2 shadow-xl shadow-cyan-900/10">
+            <div className="rounded-4xl border border-white/10 bg-linear-to-br from-white/5 to-slate-900 p-8 md:col-span-2 shadow-xl shadow-cyan-900/10">
               <div>
                 <div>
                   <p className="leading-8 text-slate-300 text-center md:text-left">
@@ -316,7 +316,7 @@ export default function PortfolioGabriel() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
             variants={fadeUp}
-            className="rounded-[2rem] border border-white/10 bg-white/5 p-8"
+            className="rounded-4xl border border-white/10 bg-white/5 p-8"
           >
             <p className="text-sm uppercase tracking-[0.25em] text-cyan-300">
               Skills
@@ -369,7 +369,7 @@ export default function PortfolioGabriel() {
                 viewport={{ once: true, amount: 0.15 }}
                 custom={index}
                 variants={fadeUp}
-                className="group rounded-[2rem] border border-white/10 bg-white/5 p-6 transition hover:-translate-y-1 hover:border-cyan-400/30 hover:bg-white/[0.07]"
+                className="group rounded-4xl border border-white/10 bg-white/5 p-6 transition hover:-translate-y-1 hover:border-cyan-400/30 hover:bg-white/[0.07]"
               >
                 <div className="flex items-center justify-between">
                   <div className="rounded-2xl border border-cyan-400/20 bg-cyan-400/10 p-3 text-cyan-300">
@@ -449,7 +449,7 @@ export default function PortfolioGabriel() {
             variants={fadeUp}
             className="grid gap-6 md:grid-cols-3"
           >
-            <div className="rounded-[2rem] border border-white/10 bg-white/5 p-6">
+            <div className="rounded-4xl border border-white/10 bg-white/5 p-6">
               <div className="mb-4 inline-flex rounded-2xl border border-cyan-400/20 bg-cyan-400/10 p-3 text-cyan-300">
                 <Code2 className="h-6 w-6" />
               </div>
@@ -460,7 +460,7 @@ export default function PortfolioGabriel() {
               </p>
             </div>
 
-            <div className="rounded-[2rem] border border-white/10 bg-white/5 p-6">
+            <div className="rounded-4xl border border-white/10 bg-white/5 p-6">
               <div className="mb-4 inline-flex rounded-2xl border border-cyan-400/20 bg-cyan-400/10 p-3 text-cyan-300">
                 <Database className="h-6 w-6" />
               </div>
@@ -471,7 +471,7 @@ export default function PortfolioGabriel() {
               </p>
             </div>
 
-            <div className="rounded-[2rem] border border-white/10 bg-white/5 p-6">
+            <div className="rounded-4xl border border-white/10 bg-white/5 p-6">
               <div className="mb-4 inline-flex rounded-2xl border border-cyan-400/20 bg-cyan-400/10 p-3 text-cyan-300">
                 <ShieldCheck className="h-6 w-6" />
               </div>
@@ -490,7 +490,7 @@ export default function PortfolioGabriel() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
             variants={fadeUp}
-            className="overflow-hidden rounded-[2rem] border border-cyan-400/20 bg-gradient-to-br from-cyan-400/10 via-slate-900 to-slate-950 p-8"
+            className="overflow-hidden rounded-4xl border border-cyan-400/20 bg-linear-to-br from-cyan-400/10 via-slate-900 to-slate-950 p-8"
           >
             <p className="text-sm uppercase tracking-[0.25em] text-cyan-300">
               Contato
@@ -507,7 +507,7 @@ export default function PortfolioGabriel() {
               {/* EMAIL */}
               <a
                 href="mailto:gabrielcarmobr19@gmail.com"
-                className="group flex flex-col items-center justify-center gap-3 rounded-[1.5rem] border border-white/10 bg-slate-950/60 p-6 transition hover:border-cyan-400/30 hover:bg-slate-900/80"
+                className="group flex flex-col items-center justify-center gap-3 rounded-3xl border border-white/10 bg-slate-950/60 p-6 transition hover:border-cyan-400/30 hover:bg-slate-900/80"
               >
                 <Mail className="h-8 w-8 text-cyan-300 transition group-hover:scale-110" />
                 <p className="text-sm text-slate-400">Email</p>
@@ -518,7 +518,7 @@ export default function PortfolioGabriel() {
                 href="https://www.linkedin.com/in/gabriel-carmo-077801309/"
                 target="_blank"
                 rel="noreferrer"
-                className="group flex flex-col items-center justify-center gap-3 rounded-[1.5rem] border border-white/10 bg-slate-950/60 p-6 transition hover:border-cyan-400/30 hover:bg-slate-900/80"
+                className="group flex flex-col items-center justify-center gap-3 rounded-3xl border border-white/10 bg-slate-950/60 p-6 transition hover:border-cyan-400/30 hover:bg-slate-900/80"
               >
                 <FaLinkedin className="h-8 w-8 text-cyan-300 transition group-hover:scale-110" />
                 <p className="text-sm text-slate-400">LinkedIn</p>
@@ -529,7 +529,7 @@ export default function PortfolioGabriel() {
                 href="https://github.com/GabrielPdoCarmo"
                 target="_blank"
                 rel="noreferrer"
-                className="group flex flex-col items-center justify-center gap-3 rounded-[1.5rem] border border-white/10 bg-slate-950/60 p-6 transition hover:border-cyan-400/30 hover:bg-slate-900/80"
+                className="group flex flex-col items-center justify-center gap-3 rounded-3xl border border-white/10 bg-slate-950/60 p-6 transition hover:border-cyan-400/30 hover:bg-slate-900/80"
               >
                 <FaGithub className="h-8 w-8 text-cyan-300 transition group-hover:scale-110" />
                 <p className="text-sm text-slate-400">GitHub</p>
