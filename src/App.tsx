@@ -137,10 +137,7 @@ export default function PortfolioGabriel() {
             </h1>
 
             <p className="mt-6 max-w-2xl text-base leading-8 text-slate-300 md:text-lg">
-              Sou estudante de TADS e desenvolvedor em formação, com experiência
-              em front-end, mobile, APIs, banco de dados e testes
-              automatizados. Busco transformar ideias em produtos funcionais,
-              bonitos e bem estruturados.
+              Sou formando em TADS e mestrando em Ciência da Computação, com foco em Engenharia de Software. Possuo experiência no desenvolvimento front-end, mobile, criação de APIs, banco de dados e testes automatizados. Busco transformar ideias em soluções funcionais, bem estruturadas e com excelente experiência de usuário.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-4">
