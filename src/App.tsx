@@ -46,20 +46,20 @@ export default function PortfolioGabriel() {
       code: "#",
     },
     {
-      title: "Campo Peças 🚧 (Em desenvolvimento)",
-      description:
-        "Sistema web em desenvolvimento voltado para venda e gestão de peças, com foco em performance, usabilidade e organização de produtos.",
-      stack: ["React", "TypeScript", "Node.js", "API REST"],
-      highlights: [
-        "Sistema em desenvolvimento contínuo",
-        "Listagem e busca de produtos",
-        "Interface moderna e responsiva",
-        "Integração com back-end",
-      ],
-      icon: <Code2 className="h-5 w-5" />,
-      link: "#",
-      code: "#",
-    },
+  title: "Campo Peças",
+  description:
+    "Sistema web voltado para venda e gestão de peças, com foco em performance, usabilidade e organização de produtos.",
+  stack: ["React", "TypeScript", "Node.js", "API REST"],
+  highlights: [
+    "Sistema web em desenvolvimento contínuo",
+    "Listagem e busca de produtos",
+    "Interface moderna e responsiva",
+    "Integração com back-end",
+  ],
+  icon: <Code2 className="h-5 w-5" />,
+  link: "https://www.campopecas.com.br/",
+  code: "#",
+},
     {
       title: "QA e Testes",
       description:
@@ -399,40 +399,52 @@ export default function PortfolioGabriel() {
                 </ul>
 
                 <div className="mt-6 flex gap-3">
-                  {"frontend" in project && "backend" in project && (
-                    <div className="relative">
-                      <button
-                        onClick={() =>
-                          setOpenProject(openProject === index ? null : index)
-                        }
-                        className="rounded-xl bg-cyan-400 px-4 py-2 text-sm font-semibold text-slate-950 transition hover:brightness-110"
-                      >
-                        Ver Repositórios
-                      </button>
+  {"frontend" in project && "backend" in project && (
+    <div className="relative">
+      <button
+        onClick={() =>
+          setOpenProject(openProject === index ? null : index)
+        }
+        className="rounded-xl bg-cyan-400 px-4 py-2 text-sm font-semibold text-slate-950 transition hover:brightness-110"
+      >
+        Ver Repositórios
+      </button>
 
-                      {openProject === index && (
-                        <div className="absolute left-0 top-full z-20 mt-2 w-44 overflow-hidden rounded-xl border border-white/10 bg-slate-900 shadow-xl">
-                          <a
-                            href={project.frontend}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="block px-4 py-3 text-sm text-white hover:bg-white/10"
-                          >
-                            Front-end
-                          </a>
-                          <a
-                            href={project.backend}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="block px-4 py-3 text-sm text-white hover:bg-white/10"
-                          >
-                            Back-end
-                          </a>
-                        </div>
-                      )}
-                    </div>
-                  )}
-                </div>
+      {openProject === index && (
+        <div className="absolute left-0 top-full z-20 mt-2 w-44 overflow-hidden rounded-xl border border-white/10 bg-slate-900 shadow-xl">
+          <a
+            href={project.frontend}
+            target="_blank"
+            rel="noreferrer"
+            className="block px-4 py-3 text-sm text-white hover:bg-white/10"
+          >
+            Front-end
+          </a>
+
+          <a
+            href={project.backend}
+            target="_blank"
+            rel="noreferrer"
+            className="block px-4 py-3 text-sm text-white hover:bg-white/10"
+          >
+            Back-end
+          </a>
+        </div>
+      )}
+    </div>
+  )}
+
+  {"link" in project && project.link !== "#" && (
+    <a
+      href={project.link}
+      target="_blank"
+      rel="noreferrer"
+      className="rounded-xl bg-cyan-400 px-4 py-2 text-sm font-semibold text-slate-950 transition hover:brightness-110"
+    >
+      Visitar site
+    </a>
+  )}
+</div>
               </motion.article>
             ))}
           </div>
