@@ -9,7 +9,7 @@ import {
   ChevronDown,
 } from "lucide-react";
 
-import { FaLinkedin, FaGithub } from "react-icons/fa";
+import { FaLinkedin, FaGithub, FaWhatsapp } from "react-icons/fa";
 import fotoPerfil from "./assets/perfil.png";
 
 export default function PortfolioGabriel() {
@@ -25,7 +25,10 @@ export default function PortfolioGabriel() {
     "MySQL",
     "Cypress",
     "GitHub",
+    "GIT",
     "API REST",
+    "HTML",
+    "CSS",
   ];
 
   const projects = [
@@ -185,6 +188,17 @@ export default function PortfolioGabriel() {
                 <Mail className="h-5 w-5 text-white transition group-hover:scale-110 group-hover:text-cyan-300" />
               </a>
 
+              {/* WHATSAPP */}
+              <a
+                href="https://wa.me/5544999917358"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Conversar pelo WhatsApp"
+                className="group rounded-full border border-white/10 bg-white/5 p-3 transition hover:border-green-400/40 hover:bg-white/10 hover:shadow-[0_0_15px_rgba(34,197,94,0.3)]"
+              >
+                <FaWhatsapp className="h-5 w-5 text-white transition group-hover:scale-110 group-hover:text-green-400" />
+              </a>
+
             </div>
           </motion.div>
 
@@ -195,7 +209,7 @@ export default function PortfolioGabriel() {
             variants={fadeUp}
             className="relative"
           >
-            <div className="absolute -inset-4 rounded-4xl-gradient-to-br from-cyan-400/20 to-blue-500/10 blur-2xl" />
+            <div className="absolute -inset-4 rounded-4xl bg-gradient-to-br from-cyan-400/20 to-blue-500/10 blur-2xl" />
             <div className="relative overflow-hidden rounded-4xl border border-white/10 bg-white/5 p-5 shadow-2xl">
               <div className="rounded-3xl border border-white/10 bg-slate-900/90 p-6">
                 <div className="flex items-center justify-between">
@@ -511,7 +525,7 @@ export default function PortfolioGabriel() {
               reais e de qualidade.
             </p>
 
-            <div className="mt-8 grid gap-4 md:grid-cols-3">
+            <div className="mt-8 grid gap-4 md:grid-cols-4">
 
               {/* EMAIL */}
               <a
@@ -542,6 +556,18 @@ export default function PortfolioGabriel() {
               >
                 <FaGithub className="h-8 w-8 text-cyan-300 transition group-hover:scale-110" />
                 <p className="text-sm text-slate-400">GitHub</p>
+              </a>
+
+              {/* WHATSAPP */}
+              <a
+                href="https://wa.me/5544999917358"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Contato pelo WhatsApp: (44) 99991-7358"
+                className="group flex flex-col items-center justify-center gap-3 rounded-3xl border border-white/10 bg-slate-950/60 p-6 transition hover:border-green-400/30 hover:bg-slate-900/80"
+              >
+                <FaWhatsapp className="h-8 w-8 text-green-400 transition group-hover:scale-110" />
+                <p className="text-sm text-slate-400">WhatsApp</p>
               </a>
 
             </div>
