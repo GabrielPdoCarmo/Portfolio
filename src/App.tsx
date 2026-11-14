@@ -819,7 +819,7 @@ export default function PortfolioGabriel() {
                 },
                 {
                   label: "WhatsApp",
-                  caption: "(44) 99991-7358",
+                  caption: "Enviar mensagem",
                   href: WHATSAPP_URL,
                   icon: FaWhatsapp,
                 },
