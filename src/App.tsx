@@ -344,8 +344,9 @@ export default function PortfolioGabriel() {
 
                     {/* CAMPO COM APENAS A PALAVRA PEÇAS */}
                     <div className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-3 text-xs text-slate-400">
-                      <Search className="h-4 w-4" />
-                      Peças
+                      
+<Search className="h-4 w-4" />
+<span>Buscar por peças (Scania, Volvo e Carreta)</span>
                     </div>
 
                     <div className="mt-3 grid grid-cols-3 gap-2">
