@@ -21,7 +21,13 @@ import {
   Truck,
   X,
 } from "lucide-react";
-import { FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa";
+
+import {
+  FaGithub,
+  FaLinkedin,
+  FaWhatsapp,
+} from "react-icons/fa";
+
 import fotoPerfil from "./assets/perfil.png";
 
 const CAMPO_PECAS_URL = "https://www.campopecas.com.br/";
@@ -94,7 +100,10 @@ export default function PortfolioGabriel() {
       <header className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/90 backdrop-blur-xl">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4 sm:px-6">
 
-          <a href="#inicio" className="flex min-w-0 items-center gap-3">
+          <a
+            href="#inicio"
+            className="flex min-w-0 items-center gap-3"
+          >
             <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-cyan-400/25 bg-cyan-400/10 font-black text-cyan-300">
               GC
             </span>
@@ -123,7 +132,9 @@ export default function PortfolioGabriel() {
 
           <button
             type="button"
-            aria-label={mobileMenuOpen ? "Fechar menu" : "Abrir menu"}
+            aria-label={
+              mobileMenuOpen ? "Fechar menu" : "Abrir menu"
+            }
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="rounded-xl border border-white/10 p-2.5 md:hidden"
           >
@@ -153,35 +164,39 @@ export default function PortfolioGabriel() {
 
       <main className="relative z-10">
 
-        {/* PÁGINA INICIAL - ESPAÇAMENTO CORRIGIDO PARA PC */}
+        {/* INÍCIO - LARGURA TOTAL NO PC */}
         <section
           id="inicio"
-          className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 px-5 py-12 sm:px-6 sm:py-16 lg:grid-cols-2 lg:gap-12 lg:py-20"
+          className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-5 pb-10 pt-10 sm:px-6 md:gap-10 md:pt-14 lg:pt-16"
         >
+
+          {/* TEXTO OCUPANDO A LARGURA DA TELA */}
           <motion.div
             initial="hidden"
             animate="visible"
             variants={fadeUp}
             transition={{ duration: 0.55 }}
+            className="w-full"
           >
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-cyan-400/25 bg-cyan-400/10 px-4 py-2 text-xs font-semibold tracking-wider text-cyan-200">
               <span className="h-2 w-2 rounded-full bg-cyan-300" />
               DESENVOLVIMENTO WEB, MOBILE & QA
             </div>
 
-            <h1 className="max-w-xl text-4xl font-black leading-[1.1] tracking-tight sm:text-5xl lg:text-[3.5rem]">
+            <h1 className="w-full text-4xl font-black leading-[1.12] tracking-tight sm:text-5xl lg:text-6xl">
               Transformando ideias em{" "}
               <span className="bg-gradient-to-r from-cyan-300 via-sky-300 to-blue-400 bg-clip-text text-transparent">
                 soluções digitais.
               </span>
             </h1>
 
-            <p className="mt-6 max-w-xl text-base leading-8 text-slate-300 sm:text-lg">
-              Sou formando em TADS e mestrando em Ciência da Computação,
-              com foco em Engenharia de Software. Atuo com desenvolvimento
-              front-end, mobile, APIs, bancos de dados e testes automatizados,
-              sempre com atenção à experiência do usuário e à qualidade
-              do software.
+            <p className="mt-6 w-full text-base leading-8 text-slate-300 sm:text-lg">
+              Sou formando em TADS e mestrando em Ciência da
+              Computação, com foco em Engenharia de Software.
+              Atuo com desenvolvimento front-end, mobile,
+              APIs, bancos de dados e testes automatizados,
+              sempre com atenção à experiência do usuário
+              e à qualidade do software.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
@@ -208,8 +223,16 @@ export default function PortfolioGabriel() {
                   key={label}
                   href={href}
                   aria-label={label}
-                  target={href.startsWith("mailto:") ? undefined : "_blank"}
-                  rel={href.startsWith("mailto:") ? undefined : "noreferrer"}
+                  target={
+                    href.startsWith("mailto:")
+                      ? undefined
+                      : "_blank"
+                  }
+                  rel={
+                    href.startsWith("mailto:")
+                      ? undefined
+                      : "noreferrer"
+                  }
                   className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/15 bg-white/5 text-slate-200 transition hover:-translate-y-0.5 hover:border-cyan-400/40 hover:text-cyan-300"
                 >
                   <Icon className="h-5 w-5" />
@@ -218,7 +241,7 @@ export default function PortfolioGabriel() {
             </div>
           </motion.div>
 
-          {/* CAMPO PEÇAS EM DESTAQUE */}
+          {/* CAMPO PEÇAS ABAIXO DO TEXTO */}
           <motion.div
             initial="hidden"
             animate="visible"
@@ -237,28 +260,62 @@ export default function PortfolioGabriel() {
                 </div>
               </div>
 
-              <div className="p-6 sm:p-8">
-                <div className="mb-6 flex items-start justify-between gap-4">
-                  <div>
-                    <span className="mb-2 block text-xs font-semibold uppercase tracking-widest text-slate-400">
-                      Sistema Web
-                    </span>
+              <div className="grid gap-8 p-6 sm:p-8 lg:grid-cols-2 lg:items-center lg:gap-10">
 
-                    <h2 className="text-4xl font-black tracking-tight sm:text-5xl">
-                      CAMPO{" "}
-                      <span className="text-cyan-300">
-                        PEÇAS
+                {/* INFORMAÇÕES DO CAMPO PEÇAS */}
+                <div>
+                  <div className="mb-6 flex items-start justify-between gap-4">
+                    <div>
+                      <span className="mb-2 block text-xs font-semibold uppercase tracking-widest text-slate-400">
+                        Sistema Web
                       </span>
-                    </h2>
 
-                    <p className="mt-2 text-sm text-slate-400">
-                      Venda e gestão de peças
-                    </p>
+                      <h2 className="text-4xl font-black tracking-tight sm:text-5xl">
+                        CAMPO{" "}
+                        <span className="text-cyan-300">
+                          PEÇAS
+                        </span>
+                      </h2>
+
+                      <p className="mt-2 text-sm text-slate-400">
+                        Venda e gestão de peças
+                      </p>
+                    </div>
+
+                    <div className="rounded-2xl border border-cyan-400/25 bg-cyan-400/10 p-3 text-cyan-300">
+                      <Truck className="h-7 w-7" />
+                    </div>
                   </div>
 
-                  <div className="rounded-2xl border border-cyan-400/25 bg-cyan-400/10 p-3 text-cyan-300">
-                    <Truck className="h-7 w-7" />
+                  <p className="text-sm leading-7 text-slate-300 sm:text-base">
+                    Plataforma web com foco em organização,
+                    desempenho e facilidade para encontrar produtos.
+                    Interface moderna, responsiva e desenvolvida
+                    para proporcionar uma boa experiência ao usuário.
+                  </p>
+
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {["React", "TypeScript", "Node.js"].map(
+                      (tech) => (
+                        <span
+                          key={tech}
+                          className="rounded-lg border border-cyan-400/15 bg-cyan-400/10 px-3 py-1.5 text-xs font-semibold text-cyan-200"
+                        >
+                          {tech}
+                        </span>
+                      )
+                    )}
                   </div>
+
+                  <a
+                    href={CAMPO_PECAS_URL}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-7 flex w-full items-center justify-center gap-2 rounded-2xl bg-cyan-400 px-5 py-4 text-sm font-extrabold text-slate-950 transition hover:bg-cyan-300"
+                  >
+                    Acessar Campo Peças
+                    <ArrowUpRight className="h-5 w-5" />
+                  </a>
                 </div>
 
                 {/* ILUSTRAÇÃO DO SISTEMA */}
@@ -285,22 +342,33 @@ export default function PortfolioGabriel() {
                       </span>
                     </div>
 
+                    {/* CAMPO COM APENAS A PALAVRA PEÇAS */}
                     <div className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-3 text-xs text-slate-400">
                       <Search className="h-4 w-4" />
-                      Buscar peças e produtos
+                      Peças
                     </div>
 
                     <div className="mt-3 grid grid-cols-3 gap-2">
                       {[
-                        { icon: Layers3, name: "Catálogo" },
-                        { icon: Search, name: "Busca" },
-                        { icon: MonitorSmartphone, name: "Responsivo" },
+                        {
+                          icon: Layers3,
+                          name: "Catálogo",
+                        },
+                        {
+                          icon: Search,
+                          name: "Busca",
+                        },
+                        {
+                          icon: MonitorSmartphone,
+                          name: "Responsivo",
+                        },
                       ].map(({ icon: Icon, name }) => (
                         <div
                           key={name}
                           className="flex min-h-20 flex-col items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 text-center"
                         >
                           <Icon className="h-5 w-5 text-cyan-300" />
+
                           <span className="text-xs text-slate-300">
                             {name}
                           </span>
@@ -309,35 +377,6 @@ export default function PortfolioGabriel() {
                     </div>
                   </div>
                 </div>
-
-                <p className="mt-5 text-sm leading-7 text-slate-300">
-                  Plataforma web com foco em organização, desempenho e
-                  facilidade para encontrar produtos. Interface moderna,
-                  responsiva e desenvolvida para proporcionar uma boa
-                  experiência ao usuário.
-                </p>
-
-                {/* TECNOLOGIAS SEM API REST */}
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {["React", "TypeScript", "Node.js"].map((tech) => (
-                    <span
-                      key={tech}
-                      className="rounded-lg border border-cyan-400/15 bg-cyan-400/10 px-3 py-1.5 text-xs font-semibold text-cyan-200"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-
-                <a
-                  href={CAMPO_PECAS_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="mt-7 flex w-full items-center justify-center gap-2 rounded-2xl bg-cyan-400 px-5 py-4 text-sm font-extrabold text-slate-950 transition hover:bg-cyan-300"
-                >
-                  Acessar Campo Peças
-                  <ArrowUpRight className="h-5 w-5" />
-                </a>
               </div>
             </div>
           </motion.div>
@@ -488,7 +527,6 @@ export default function PortfolioGabriel() {
             className="relative mt-8 overflow-hidden rounded-3xl border border-cyan-400/30 bg-gradient-to-br from-cyan-400/15 via-slate-900 to-blue-950/40 p-7 sm:p-9"
           >
             <div className="relative grid items-center gap-8 md:grid-cols-2">
-
               <div>
                 <span className="inline-flex items-center gap-2 rounded-full border border-cyan-400/25 bg-cyan-400/10 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-cyan-200">
                   <CheckCircle2 className="h-3.5 w-3.5" />
@@ -619,7 +657,11 @@ export default function PortfolioGabriel() {
                   className="inline-flex items-center gap-2 rounded-xl bg-cyan-400 px-4 py-2.5 text-sm font-bold text-slate-950"
                 >
                   Ver repositórios
-                  <ChevronDown className={`h-4 w-4 transition-transform ${openProject ? "rotate-180" : ""}`} />
+                  <ChevronDown
+                    className={`h-4 w-4 transition-transform ${
+                      openProject ? "rotate-180" : ""
+                    }`}
+                  />
                 </button>
 
                 {openProject && (
@@ -739,6 +781,7 @@ export default function PortfolioGabriel() {
           className="scroll-mt-24 mx-auto max-w-6xl px-5 pb-20 pt-12 sm:px-6"
         >
           <div className="overflow-hidden rounded-3xl border border-cyan-400/20 bg-gradient-to-br from-cyan-400/10 via-slate-900 to-slate-950 p-7 sm:p-10">
+
             <p className="text-xs font-bold uppercase tracking-[0.25em] text-cyan-300">
               Contato
             </p>
@@ -783,13 +826,23 @@ export default function PortfolioGabriel() {
                 <a
                   key={label}
                   href={href}
-                  target={href.startsWith("mailto:") ? undefined : "_blank"}
-                  rel={href.startsWith("mailto:") ? undefined : "noreferrer"}
+                  target={
+                    href.startsWith("mailto:")
+                      ? undefined
+                      : "_blank"
+                  }
+                  rel={
+                    href.startsWith("mailto:")
+                      ? undefined
+                      : "noreferrer"
+                  }
                   className="group flex flex-col items-center gap-3 rounded-2xl border border-white/10 bg-slate-950/60 p-6 text-center transition hover:-translate-y-1 hover:border-cyan-400/30 hover:bg-slate-900"
                 >
                   <Icon className="h-8 w-8 text-cyan-300 transition group-hover:scale-110" />
 
-                  <span className="font-semibold">{label}</span>
+                  <span className="font-semibold">
+                    {label}
+                  </span>
 
                   <span className="text-xs text-slate-400">
                     {caption}
@@ -803,7 +856,8 @@ export default function PortfolioGabriel() {
 
       {/* RODAPÉ */}
       <footer className="relative z-10 border-t border-white/10 px-5 py-7 text-center text-sm text-slate-500">
-        © 2026 Gabriel Pereira do Carmo. Portfólio de desenvolvimento de software.
+        © 2026 Gabriel Pereira do Carmo.
+        Portfólio de desenvolvimento de software.
       </footer>
     </div>
   );
