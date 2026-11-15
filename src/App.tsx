@@ -57,6 +57,7 @@ const techs = [
   "HTML",
   "CSS",
   "API REST",
+"Neon",
 ];
 
 const fadeUp = {
@@ -298,7 +299,7 @@ export default function PortfolioGabriel() {
                       "React",
                       "TypeScript",
                       "Node.js",
-                      "Supabase",
+                      "Neon",
                       "Vercel",
                       "Render",
                     ].map((tech) => (
@@ -536,7 +537,7 @@ export default function PortfolioGabriel() {
                     "React",
                     "TypeScript",
                     "Node.js",
-                    "Supabase",
+                    "Neon",
                     "Vercel",
                     "Render",
                   ].map((tech) => (
@@ -636,6 +637,7 @@ export default function PortfolioGabriel() {
     "Node.js",
     "MySQL",
     "API REST",
+"Supabase",
   ].map((tech) => (
     <span
       key={tech}
