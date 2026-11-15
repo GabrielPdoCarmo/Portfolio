@@ -1,0 +1,221 @@
+/*
+ * Estilos do portfólio — React + Tailwind CSS v4
+ * Mantém os utilitários Tailwind e as variantes responsivas,
+ * mas deixa os estilos fora do JSX.
+ * Não remova o @import "tailwindcss" de src/index.css.
+ */
+@reference "./index.css";
+
+
+/* BASE */
+.base-01 { @apply min-h-screen overflow-x-hidden bg-slate-950 text-white; }
+.base-01::selection, .base-01 *::selection { @apply bg-cyan-300 text-slate-950; }
+
+/* BACKGROUND */
+.background-01 { @apply pointer-events-none fixed inset-0 z-0 overflow-hidden; }
+.background-02 { @apply absolute -left-40 top-0 h-[430px] w-[430px] rounded-full bg-cyan-500/10 blur-[100px]; }
+.background-03 { @apply absolute -right-40 top-[20%] h-[520px] w-[520px] rounded-full bg-blue-600/10 blur-[110px]; }
+
+/* HEADER */
+.header-01 { @apply sticky top-0 z-50 border-b border-white/10 bg-slate-950/90 backdrop-blur-xl; }
+.header-02 { @apply mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4; }
+@media (min-width: 640px) { .header-02 { @apply px-6; } }
+.header-03 { @apply flex min-w-0 items-center gap-3; }
+.header-04 { @apply h-12 w-12 shrink-0 object-contain drop-shadow-[0_0_10px_rgba(34,211,238,0.35)]; }
+@media (min-width: 640px) { .header-04 { @apply h-14 w-14; } }
+.header-05 { @apply min-w-0; }
+.header-06 { @apply block truncate text-sm font-bold; }
+@media (min-width: 640px) { .header-06 { @apply text-base; } }
+.header-07 { @apply block text-xs text-slate-400; }
+.header-08 { @apply hidden items-center gap-5 text-sm text-slate-300; }
+@media (min-width: 768px) { .header-08 { @apply flex; } }
+.header-09 { @apply transition; }
+.header-09:hover { @apply text-cyan-300; }
+.header-10 { @apply rounded-xl border border-white/10 p-2.5; }
+@media (min-width: 768px) { .header-10 { @apply hidden; } }
+.header-11 { @apply h-5 w-5; }
+.header-12 { @apply border-t border-white/10 bg-slate-950 px-6 py-3; }
+@media (min-width: 768px) { .header-12 { @apply hidden; } }
+.header-13 { @apply block rounded-lg px-2 py-3 text-sm text-slate-200; }
+.header-13:hover { @apply bg-white/5; }
+.header-14 { @apply relative z-10; }
+
+/* HERO */
+.hero-01 { @apply mx-auto flex w-full max-w-6xl flex-col gap-8 px-5 pb-10 pt-10; }
+@media (min-width: 640px) { .hero-01 { @apply px-6; } }
+@media (min-width: 768px) { .hero-01 { @apply gap-10 pt-14; } }
+@media (min-width: 1024px) { .hero-01 { @apply pt-16; } }
+.hero-02 { @apply w-full; }
+.hero-03 { @apply mb-6 inline-flex items-center gap-2 rounded-full border border-cyan-400/25 bg-cyan-400/10 px-4 py-2 text-xs font-semibold tracking-wider text-cyan-200; }
+.hero-04 { @apply h-2 w-2 rounded-full bg-cyan-300; }
+.hero-05 { @apply w-full text-4xl font-black leading-[1.12] tracking-tight; }
+@media (min-width: 640px) { .hero-05 { @apply text-5xl; } }
+@media (min-width: 1024px) { .hero-05 { @apply text-6xl; } }
+.hero-06 { @apply bg-gradient-to-r from-cyan-300 via-sky-300 to-blue-400 bg-clip-text text-transparent; }
+.hero-07 { @apply mt-6 w-full text-base leading-8 text-slate-300; }
+@media (min-width: 640px) { .hero-07 { @apply text-lg; } }
+.hero-08 { @apply mt-8 flex flex-wrap gap-3; }
+.hero-09 { @apply inline-flex items-center gap-2 rounded-2xl bg-cyan-400 px-5 py-3.5 font-bold text-slate-950 shadow-lg shadow-cyan-950/40 transition; }
+.hero-09:hover { @apply -translate-y-0.5 bg-cyan-300; }
+.hero-10 { @apply h-4 w-4; }
+.hero-11 { @apply inline-flex items-center gap-2 rounded-2xl border border-white/15 bg-white/5 px-5 py-3.5 font-semibold transition; }
+.hero-11:hover { @apply bg-white/10; }
+.hero-12 { @apply inline-flex items-center gap-2 rounded-2xl border border-cyan-400/30 bg-cyan-400/10 px-5 py-3.5 font-semibold text-cyan-200 transition; }
+.hero-12:hover { @apply bg-cyan-400/20; }
+.hero-13 { @apply mt-8 flex flex-wrap items-center gap-3; }
+.hero-14 { @apply flex h-11 w-11 items-center justify-center rounded-xl border border-white/15 bg-white/5 text-slate-200 transition; }
+.hero-14:hover { @apply -translate-y-0.5 border-cyan-400/40 text-cyan-300; }
+
+/* FEATURED */
+.featured-01 { @apply relative w-full; }
+.featured-02 { @apply absolute -inset-4 rounded-3xl bg-gradient-to-br from-cyan-400/20 to-blue-500/10 blur-2xl; }
+.featured-03 { @apply relative overflow-hidden rounded-3xl border border-cyan-400/25 bg-slate-900/95 shadow-2xl; }
+.featured-04 { @apply border-b border-white/10 bg-cyan-400/5 px-6 py-5; }
+.featured-05 { @apply flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-cyan-200; }
+.featured-06 { @apply h-2.5 w-2.5 rounded-full bg-cyan-400; }
+.featured-07 { @apply grid gap-8 p-6; }
+@media (min-width: 640px) { .featured-07 { @apply p-8; } }
+@media (min-width: 1024px) { .featured-07 { @apply grid-cols-2 items-center gap-10; } }
+.featured-08 { @apply mb-6 flex items-start justify-between gap-4; }
+.featured-09 { @apply mb-2 block text-xs font-semibold uppercase tracking-widest text-slate-400; }
+.featured-10 { @apply text-4xl font-black tracking-tight; }
+@media (min-width: 640px) { .featured-10 { @apply text-5xl; } }
+.featured-11 { @apply text-cyan-300; }
+.featured-12 { @apply mt-2 text-sm text-slate-400; }
+.featured-13 { @apply rounded-2xl border border-cyan-400/25 bg-cyan-400/10 p-3 text-cyan-300; }
+.featured-14 { @apply h-7 w-7; }
+.featured-15 { @apply text-sm leading-7 text-slate-300; }
+@media (min-width: 640px) { .featured-15 { @apply text-base; } }
+.featured-16 { @apply mt-5 flex flex-wrap gap-2; }
+.featured-17 { @apply rounded-lg border border-cyan-400/15 bg-cyan-400/10 px-3 py-1.5 text-xs font-semibold text-cyan-200; }
+.featured-18 { @apply mt-7 flex w-full items-center justify-center gap-2 rounded-2xl bg-cyan-400 px-5 py-4 text-sm font-extrabold text-slate-950 transition; }
+.featured-18:hover { @apply bg-cyan-300; }
+.featured-19 { @apply overflow-hidden rounded-2xl border border-white/10 bg-slate-950; }
+.featured-20 { @apply flex items-center justify-between border-b border-white/10 bg-slate-900 px-4 py-3; }
+.featured-21 { @apply flex gap-2; }
+.featured-22 { @apply h-2 w-2 rounded-full bg-red-400/70; }
+.featured-23 { @apply h-2 w-2 rounded-full bg-amber-400/70; }
+.featured-24 { @apply h-2 w-2 rounded-full bg-green-400/70; }
+.featured-25 { @apply text-[10px] text-slate-400; }
+.featured-26 { @apply h-3.5 w-3.5 text-slate-500; }
+.featured-27 { @apply p-4; }
+@media (min-width: 640px) { .featured-27 { @apply p-5; } }
+.featured-28 { @apply mb-4 flex items-center gap-2 text-cyan-300; }
+.featured-29 { @apply text-sm font-extrabold; }
+.featured-30 { @apply flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-3 text-xs text-slate-400; }
+.featured-31 { @apply h-4 w-4 shrink-0; }
+.featured-32 { @apply mt-3 grid grid-cols-3 gap-2; }
+.featured-33 { @apply flex min-h-20 flex-col items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 text-center; }
+.featured-34 { @apply h-5 w-5 text-cyan-300; }
+.featured-35 { @apply text-xs text-slate-300; }
+.featured-36 { @apply flex justify-center pb-4; }
+.featured-37 { @apply rounded-full border border-white/10 bg-white/5 p-3 text-slate-300; }
+.featured-38 { @apply h-5 w-5 animate-bounce; }
+
+/* ABOUT */
+.about-01 { @apply scroll-mt-24 mx-auto max-w-6xl px-5 py-12; }
+@media (min-width: 640px) { .about-01 { @apply px-6; } }
+.about-02 { @apply grid items-center gap-8; }
+@media (min-width: 768px) { .about-02 { @apply grid-cols-[260px_1fr]; } }
+.about-03 { @apply text-center; }
+@media (min-width: 768px) { .about-03 { @apply text-left; } }
+.about-04 { @apply text-xs font-bold uppercase tracking-[0.25em] text-cyan-300; }
+.about-05 { @apply mt-3 text-3xl font-black; }
+.about-06 { @apply mx-auto mt-6 h-52 w-52 rounded-full border-4 border-slate-900 object-cover shadow-xl shadow-cyan-900/30 ring-2 ring-cyan-400/25; }
+@media (min-width: 768px) { .about-06 { @apply mx-0; } }
+.about-07 { @apply rounded-3xl border border-white/10 bg-white/5 p-7; }
+@media (min-width: 640px) { .about-07 { @apply p-9; } }
+.about-08 { @apply text-base leading-8 text-slate-300; }
+.about-09 { @apply mt-5 text-base leading-8 text-slate-300; }
+.about-10 { @apply font-semibold text-cyan-300 underline underline-offset-4; }
+
+/* SKILLS */
+.skills-01 { @apply mt-3 text-slate-400; }
+.skills-02 { @apply mt-7 flex flex-wrap gap-3; }
+.skills-03 { @apply rounded-xl border border-white/10 bg-slate-900 px-4 py-2.5 text-sm font-medium text-slate-200 transition; }
+.skills-03:hover { @apply border-cyan-400/40 text-cyan-200; }
+
+/* PROJECTS */
+.projects-01 { @apply mt-3 text-3xl font-black; }
+@media (min-width: 640px) { .projects-01 { @apply text-4xl; } }
+.projects-02 { @apply mt-3 max-w-2xl leading-7 text-slate-400; }
+.projects-03 { @apply relative mt-8 overflow-hidden rounded-3xl border border-cyan-400/30 bg-gradient-to-br from-cyan-400/15 via-slate-900 to-blue-950/40 p-7; }
+@media (min-width: 640px) { .projects-03 { @apply p-9; } }
+.projects-04 { @apply relative grid items-center gap-8; }
+@media (min-width: 768px) { .projects-04 { @apply grid-cols-2; } }
+.projects-05 { @apply inline-flex items-center gap-2 rounded-full border border-cyan-400/25 bg-cyan-400/10 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-cyan-200; }
+.projects-06 { @apply h-3.5 w-3.5; }
+.projects-07 { @apply mt-5 text-3xl font-black; }
+@media (min-width: 640px) { .projects-07 { @apply text-4xl; } }
+.projects-08 { @apply mt-4 max-w-xl text-sm leading-7 text-slate-300; }
+@media (min-width: 640px) { .projects-08 { @apply text-base; } }
+.projects-09 { @apply rounded-lg border border-white/10 bg-slate-950/50 px-3 py-1.5 text-xs font-medium text-cyan-100; }
+.projects-10 { @apply mt-7 inline-flex items-center gap-2 rounded-xl bg-cyan-400 px-5 py-3.5 text-sm font-bold text-slate-950 transition; }
+.projects-10:hover { @apply bg-cyan-300; }
+.projects-11 { @apply grid gap-3; }
+.projects-12 { @apply flex items-start gap-3 rounded-2xl border border-white/10 bg-slate-950/50 p-4; }
+.projects-13 { @apply rounded-xl bg-cyan-400/10 p-2.5 text-cyan-300; }
+.projects-14 { @apply text-sm font-bold; }
+.projects-15 { @apply mt-1 text-xs leading-5 text-slate-400; }
+.projects-16 { @apply mt-6 grid gap-6; }
+@media (min-width: 768px) { .projects-16 { @apply grid-cols-2; } }
+.projects-17 { @apply rounded-3xl border border-white/10 bg-white/5 p-7 transition; }
+.projects-17:hover { @apply -translate-y-1 border-cyan-400/30; }
+.projects-18 { @apply inline-flex rounded-2xl border border-cyan-400/20 bg-cyan-400/10 p-3 text-cyan-300; }
+.projects-19 { @apply h-6 w-6; }
+.projects-20 { @apply mt-5 text-2xl font-black; }
+.projects-21 { @apply mt-3 text-sm leading-7 text-slate-300; }
+.projects-22 { @apply mt-4 space-y-2 text-sm text-slate-400; }
+.projects-23 { @apply rounded-lg border border-cyan-400/15 bg-cyan-400/10 px-2.5 py-1.5 text-xs text-cyan-200; }
+.projects-24 { @apply relative mt-6; }
+.projects-25 { @apply inline-flex items-center gap-2 rounded-xl bg-cyan-400 px-4 py-2.5 text-sm font-bold text-slate-950; }
+.projects-26 { @apply absolute bottom-full left-0 z-20 mb-2 w-44 overflow-hidden rounded-xl border border-white/10 bg-slate-900 shadow-2xl; }
+.projects-27 { @apply block px-4 py-3 text-sm; }
+.projects-27:hover { @apply bg-white/10; }
+.projects-28 { @apply mt-6 flex items-center gap-2 text-sm font-semibold text-slate-400; }
+
+/* SPECIALTIES */
+.specialties-01 { @apply mx-auto grid max-w-6xl gap-5 px-5 py-12; }
+@media (min-width: 640px) { .specialties-01 { @apply px-6; } }
+@media (min-width: 768px) { .specialties-01 { @apply grid-cols-3; } }
+.specialties-02 { @apply rounded-3xl border border-white/10 bg-white/5 p-6; }
+.specialties-03 { @apply inline-flex rounded-xl bg-cyan-400/10 p-3 text-cyan-300; }
+.specialties-04 { @apply mt-4 text-lg font-bold; }
+.specialties-05 { @apply mt-2 text-sm leading-7 text-slate-400; }
+
+/* RESUME */
+.resume-01 { @apply scroll-mt-24 mx-auto max-w-6xl px-5 py-14; }
+@media (min-width: 640px) { .resume-01 { @apply px-6; } }
+.resume-02 { @apply relative overflow-hidden rounded-3xl border border-cyan-400/25 bg-gradient-to-br from-cyan-400/10 via-slate-900 to-blue-950/30 p-8 text-center shadow-xl shadow-cyan-950/10; }
+@media (min-width: 640px) { .resume-02 { @apply p-12; } }
+.resume-03 { @apply mx-auto flex h-20 w-20 items-center justify-center rounded-3xl border border-cyan-400/25 bg-cyan-400/10 text-cyan-300; }
+.resume-04 { @apply h-10 w-10; }
+.resume-05 { @apply mt-7 text-xs font-bold uppercase tracking-[0.25em] text-cyan-300; }
+.resume-06 { @apply mx-auto mt-5 max-w-2xl text-base leading-8 text-slate-300; }
+.resume-07 { @apply mx-auto mt-7 flex max-w-2xl flex-wrap justify-center gap-2; }
+.resume-08 { @apply rounded-full border border-white/10 bg-slate-950/50 px-3 py-2 text-xs font-medium text-slate-300; }
+.resume-09 { @apply mt-9 flex flex-wrap justify-center gap-4; }
+.resume-10 { @apply inline-flex items-center justify-center gap-2 rounded-2xl border border-cyan-400/30 bg-white/5 px-6 py-3.5 font-semibold text-cyan-200 transition; }
+.resume-10:hover { @apply -translate-y-0.5 bg-cyan-400/10; }
+.resume-11 { @apply inline-flex items-center justify-center gap-2 rounded-2xl bg-cyan-400 px-6 py-3.5 font-bold text-slate-950 shadow-lg shadow-cyan-950/30 transition; }
+.resume-11:hover { @apply -translate-y-0.5 bg-cyan-300; }
+.resume-12 { @apply mt-6 text-xs text-slate-500; }
+
+/* CONTACT */
+.contact-01 { @apply scroll-mt-24 mx-auto max-w-6xl px-5 pb-20 pt-12; }
+@media (min-width: 640px) { .contact-01 { @apply px-6; } }
+.contact-02 { @apply overflow-hidden rounded-3xl border border-cyan-400/20 bg-gradient-to-br from-cyan-400/10 via-slate-900 to-slate-950 p-7; }
+@media (min-width: 640px) { .contact-02 { @apply p-10; } }
+.contact-03 { @apply mt-4 max-w-2xl leading-8 text-slate-300; }
+.contact-04 { @apply mt-8 grid gap-4; }
+@media (min-width: 640px) { .contact-04 { @apply grid-cols-2; } }
+@media (min-width: 1024px) { .contact-04 { @apply grid-cols-4; } }
+.contact-05 { @apply flex flex-col items-center gap-3 rounded-2xl border border-white/10 bg-slate-950/60 p-6 text-center transition; }
+.contact-05:hover { @apply -translate-y-1 border-cyan-400/30 bg-slate-900; }
+.contact-06 { @apply h-8 w-8 text-cyan-300 transition; }
+.group:hover .contact-06 { @apply scale-110; }
+.contact-07 { @apply font-semibold; }
+.contact-08 { @apply text-xs text-slate-400; }
+
+/* FOOTER */
+.footer-01 { @apply relative z-10 border-t border-white/10 px-5 py-7 text-center text-sm text-slate-500; }

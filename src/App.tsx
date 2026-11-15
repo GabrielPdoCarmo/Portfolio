@@ -1,349 +1,475 @@
+
 import { useState } from "react";
 import { motion } from "framer-motion";
 import {
-  Mail,
-  Smartphone,
+  ArrowDown,
+  ArrowRight,
+  ArrowUpRight,
+  CheckCircle2,
+  ChevronDown,
   Code2,
   Database,
+  Download,
+  ExternalLink,
+  Eye,
+  FileText,
+  Layers3,
+  Mail,
+  Menu,
+  MonitorSmartphone,
+  PackageSearch,
+  Search,
   ShieldCheck,
-  ChevronDown,
+  Smartphone,
+  Truck,
+  X,
 } from "lucide-react";
 
-import { FaLinkedin, FaGithub, FaWhatsapp } from "react-icons/fa";
+import {
+  FaGithub,
+  FaLinkedin,
+  FaWhatsapp,
+} from "react-icons/fa";
+
+import logoGP from "./assets/logo-gp.png";
 import fotoPerfil from "./assets/perfil.png";
+import "./App.css";
+
+// LINKS
+const CAMPO_PECAS_URL = "https://www.campopecas.com.br/";
+const WHATSAPP_URL = "https://wa.me/5544999917358";
+const CURRICULO_URL = "/curriculo-gabriel.pdf";
+
+// TECNOLOGIAS
+const techs = [
+  "React",
+  "React Native",
+  "TypeScript",
+  "JavaScript",
+  "Node.js",
+  "Express",
+  "MySQL",
+  "Supabase",
+  "Cypress",
+  "Git",
+  "GitHub",
+  "HTML",
+  "CSS",
+];
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0 },
+};
+
+// REDES SOCIAIS
+const socialLinks = [
+  {
+    label: "GitHub",
+    href: "https://github.com/GabrielPdoCarmo",
+    icon: FaGithub,
+  },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/gabriel-carmo-077801309/",
+    icon: FaLinkedin,
+  },
+  {
+    label: "E-mail",
+    href: "mailto:gabrielcarmobr19@gmail.com",
+    icon: Mail,
+  },
+  {
+    label: "WhatsApp",
+    href: WHATSAPP_URL,
+    icon: FaWhatsapp,
+  },
+];
 
 export default function PortfolioGabriel() {
-  const [openProject, setOpenProject] = useState<number | null>(null);
+  const [openProject, setOpenProject] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const techs = [
-    "React",
-    "React Native",
-    "TypeScript",
-    "JavaScript",
-    "Node.js",
-    "Express",
-    "MySQL",
-    "Cypress",
-    "GitHub",
-    "GIT",
-    "API REST",
-    "HTML",
-    "CSS",
+  const navLinks = [
+    { label: "Sobre", href: "#sobre" },
+    { label: "Tecnologias", href: "#skills" },
+    { label: "Projetos", href: "#projetos" },
+    { label: "Currículo", href: "#curriculo" },
+    { label: "Contato", href: "#contato" },
   ];
-
-  const projects = [
-    {
-      title: "Pets Up",
-      description:
-        "Aplicativo mobile voltado para adoção de pets, conectando pessoas interessadas em adotar com quem deseja encontrar um novo lar para seus animais.",
-      stack: ["React Native", "Node.js", "TypeScript", "MySQL"],
-      highlights: [
-        "Cadastro de usuários e pets",
-        "Filtros por espécie, raça e localização",
-        "Integração entre app mobile e API",
-        "Estrutura completa com banco de dados",
-      ],
-      icon: <Smartphone className="h-5 w-5" />,
-      frontend: "https://github.com/GabrielPdoCarmo/TCC---Front",
-      backend: "https://github.com/GabrielPdoCarmo/TCC---Back",
-      code: "#",
-    },
-    {
-  title: "Campo Peças",
-  description:
-    "Sistema web voltado para venda e gestão de peças, com foco em performance, usabilidade e organização de produtos.",
-  stack: ["React", "TypeScript", "Node.js", "API REST"],
-  highlights: [
-    "Sistema web em desenvolvimento contínuo",
-    "Listagem e busca de produtos",
-    "Interface moderna e responsiva",
-    "Integração com back-end",
-  ],
-  icon: <Code2 className="h-5 w-5" />,
-  link: "https://www.campopecas.com.br/",
-  code: "#",
-},
-    {
-      title: "QA e Testes",
-      description:
-        "Experiência com testes funcionais e automatizados para validação de fluxos críticos e qualidade de software.",
-      stack: ["Cypress", "TypeScript", "QA", "Testes Funcionais"],
-      highlights: [
-        "Automação de testes",
-        "Validação de cenários críticos",
-        "Foco em qualidade",
-        "Apoio à confiabilidade do sistema",
-      ],
-      icon: <ShieldCheck className="h-5 w-5" />,
-      link: "#",
-      code: "#",
-    },
-  ];
-
-  const fadeUp = {
-    hidden: { opacity: 0, y: 30 },
-    visible: (i = 0) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        delay: i * 0.12,
-      },
-    }),
-  };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white selection:bg-cyan-300 selection:text-slate-950">
-      <div className="fixed inset-0 -z-10 overflow-hidden">
-        <div className="absolute left-[-10%] top-[-5%] h-72 w-72 rounded-full bg-cyan-500/20 blur-3xl" />
-        <div className="absolute right-[-10%] top-[20%] h-80 w-80 rounded-full bg-blue-500/20 blur-3xl" />
-        <div className="absolute bottom-[-10%] left-[20%] h-96 w-96 rounded-full bg-sky-400/10 blur-3xl" />
+    <div className="base-01">
+
+      {/* FUNDO */}
+      <div className="background-01">
+        <div className="background-02" />
+        <div className="background-03" />
       </div>
 
-      <header className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/70 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <div>
-            <p className="text-lg font-extrabold tracking-wide">
-              Gabriel Pereira do Carmo
-            </p>
-            <p className="text-sm text-slate-400">
-              Desenvolvedor em formação
-            </p>
-          </div>
+      {/* CABEÇALHO */}
+      <header className="header-01">
+        <div className="header-02">
 
-          <nav className="hidden items-center gap-6 text-sm text-slate-300 md:flex">
-            <a href="#sobre" className="transition hover:text-cyan-300">
-              Sobre
-            </a>
-            <a href="#skills" className="transition hover:text-cyan-300">
-              Skills
-            </a>
-            <a href="#projetos" className="transition hover:text-cyan-300">
-              Projetos
-            </a>
-            <a href="#contato" className="transition hover:text-cyan-300">
-              Contato
-            </a>
+          <a href="#inicio" className="header-03">
+            <img
+              src={logoGP}
+              alt="Emblema GP - Gabriel Pereira"
+              className="header-04"
+            />
+
+            <span className="header-05">
+              <span className="header-06">
+                Gabriel Pereira do Carmo
+              </span>
+              <span className="header-07">
+                Desenvolvimento de Software
+              </span>
+            </span>
+          </a>
+
+          <nav className="header-08">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="header-09"
+              >
+                {link.label}
+              </a>
+            ))}
           </nav>
+
+          <button
+            type="button"
+            aria-label={mobileMenuOpen ? "Fechar menu" : "Abrir menu"}
+            aria-expanded={mobileMenuOpen}
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="header-10"
+          >
+            {mobileMenuOpen ? (
+              <X className="header-11" />
+            ) : (
+              <Menu className="header-11" />
+            )}
+          </button>
         </div>
+
+        {mobileMenuOpen && (
+          <nav className="header-12">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className="header-13"
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+        )}
       </header>
 
-      <main>
-        <section className="mx-auto grid min-h-[92vh] max-w-6xl items-center gap-12 px-6 py-16 md:grid-cols-2">
-          <motion.div initial="hidden" animate="visible" variants={fadeUp}>
-            <h1 className="mt-6 text-4xl font-black leading-tight md:text-6xl">
-              Criando experiências{" "}
-              <span className="bg-linear-to-r from-cyan-300 to-blue-400 bg-clip-text text-transparent">
-                web e mobile
-              </span>{" "}
-              com foco em qualidade.
-            </h1>
+      <main className="header-14">
 
-            <p className="mt-6 max-w-2xl text-base leading-8 text-slate-300 md:text-lg">
-              Sou formando em TADS e mestrando em Ciência da Computação, com foco em Engenharia de Software. Possuo experiência no desenvolvimento front-end, mobile, criação de APIs, banco de dados e testes automatizados. Busco transformar ideias em soluções funcionais, bem estruturadas e com excelente experiência de usuário.
-            </p>
-
-            <div className="mt-8 flex flex-wrap gap-4">
-              <a
-                href="#projetos"
-                className="rounded-2xl bg-cyan-400 px-6 py-3 font-semibold text-slate-950 shadow-xl shadow-cyan-900/30 transition hover:-translate-y-0.5"
-              >
-                Ver projetos
-              </a>
-              <a
-                href="#contato"
-                className="rounded-2xl border border-white/15 bg-white/5 px-6 py-3 font-semibold text-white transition hover:bg-white/10"
-              >
-                Falar comigo
-              </a>
-            </div>
-
-            <div className="mt-8 flex flex-wrap gap-3 text-slate-300">
-
-              {/* GITHUB */}
-              <a
-                href="https://github.com/GabrielPdoCarmo"
-                target="_blank"
-                rel="noreferrer"
-                className="group rounded-full border border-white/10 bg-white/5 p-3 transition hover:border-cyan-400/40 hover:bg-white/10 hover:shadow-[0_0_15px_rgba(34,211,238,0.3)]"
-              >
-                <FaGithub className="h-5 w-5 text-white transition group-hover:scale-110 group-hover:text-cyan-300" />
-              </a>
-
-              {/* LINKEDIN */}
-              <a
-                href="https://www.linkedin.com/in/gabriel-carmo-077801309/"
-                target="_blank"
-                rel="noreferrer"
-                className="group rounded-full border border-white/10 bg-white/5 p-3 transition hover:border-cyan-400/40 hover:bg-white/10 hover:shadow-[0_0_15px_rgba(34,211,238,0.3)]"
-              >
-                <FaLinkedin className="h-5 w-5 text-white transition group-hover:scale-110 group-hover:text-cyan-300" />
-              </a>
-
-              {/* EMAIL */}
-              <a
-                href="mailto:gabrielcarmobr19@gmail.com"
-                className="group rounded-full border border-white/10 bg-white/5 p-3 transition hover:border-cyan-400/40 hover:bg-white/10 hover:shadow-[0_0_15px_rgba(34,211,238,0.3)]"
-              >
-                <Mail className="h-5 w-5 text-white transition group-hover:scale-110 group-hover:text-cyan-300" />
-              </a>
-
-              {/* WHATSAPP */}
-              <a
-                href="https://wa.me/5544999917358"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Conversar pelo WhatsApp"
-                className="group rounded-full border border-white/10 bg-white/5 p-3 transition hover:border-green-400/40 hover:bg-white/10 hover:shadow-[0_0_15px_rgba(34,197,94,0.3)]"
-              >
-                <FaWhatsapp className="h-5 w-5 text-white transition group-hover:scale-110 group-hover:text-green-400" />
-              </a>
-
-            </div>
-          </motion.div>
-
+        {/* APRESENTAÇÃO INICIAL */}
+        <section id="inicio" className="hero-01">
           <motion.div
             initial="hidden"
             animate="visible"
-            custom={1}
             variants={fadeUp}
-            className="relative"
+            transition={{ duration: 0.55 }}
+            className="hero-02"
           >
-            <div className="absolute -inset-4 rounded-4xl bg-gradient-to-br from-cyan-400/20 to-blue-500/10 blur-2xl" />
-            <div className="relative overflow-hidden rounded-4xl border border-white/10 bg-white/5 p-5 shadow-2xl">
-              <div className="rounded-3xl border border-white/10 bg-slate-900/90 p-6">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm text-slate-400">
-                      Projeto em destaque
-                    </p>
-                    <h2 className="mt-1 text-3xl font-black text-cyan-300">
-                      Pets Up
-                    </h2>
+            <div className="hero-03">
+              <span className="hero-04" />
+              DESENVOLVIMENTO WEB, MOBILE & QA
+            </div>
+
+            <h1 className="hero-05">
+              Transformando ideias em{" "}
+              <span className="hero-06">
+                soluções digitais.
+              </span>
+            </h1>
+
+            <p className="hero-07">
+              Sou formado em Tecnologia em Análise e Desenvolvimento
+              de Sistemas pelo Centro Universitário Integrado e
+              mestrando em Engenharia de Software na UTFPR.
+              Possuo experiência em QA, desenvolvimento front-end,
+              mobile, APIs, bancos de dados e testes automatizados,
+              sempre com foco em qualidade e experiência do usuário.
+            </p>
+
+            <div className="hero-08">
+              <a href="#projetos" className="hero-09">
+                Ver meus projetos
+                <ArrowRight className="hero-10" />
+              </a>
+
+              <a href="#contato" className="hero-11">
+                Falar comigo
+                <ArrowUpRight className="hero-10" />
+              </a>
+
+              <a
+                href={CURRICULO_URL}
+                download="Curriculo_Gabriel_Pereira_do_Carmo.pdf"
+                className="hero-12"
+              >
+                <Download className="hero-10" />
+                Baixar currículo
+              </a>
+            </div>
+
+            <div className="hero-13">
+              {socialLinks.map(({ label, href, icon: Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  aria-label={label}
+                  target={href.startsWith("mailto:") ? undefined : "_blank"}
+                  rel={href.startsWith("mailto:") ? undefined : "noreferrer"}
+                  className="hero-14"
+                >
+                  <Icon className="header-11" />
+                </a>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* CAMPO PEÇAS EM DESTAQUE */}
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={fadeUp}
+            transition={{ duration: 0.65, delay: 0.15 }}
+            className="featured-01"
+          >
+            <div className="featured-02" />
+
+            <div className="featured-03">
+              <div className="featured-04">
+                <div className="featured-05">
+                  <span className="featured-06" />
+                  Projeto em destaque
+                </div>
+              </div>
+
+              <div className="featured-07">
+                <div>
+                  <div className="featured-08">
+                    <div>
+                      <span className="featured-09">
+                        Sistema Web
+                      </span>
+
+                      <h2 className="featured-10">
+                        CAMPO{" "}
+                        <span className="featured-11">
+                          PEÇAS
+                        </span>
+                      </h2>
+
+                      <p className="featured-12">
+                        Venda e gestão de peças
+                      </p>
+                    </div>
+
+                    <div className="featured-13">
+                      <Truck className="featured-14" />
+                    </div>
                   </div>
-                  <div className="rounded-2xl border border-cyan-400/20 bg-cyan-400/10 p-3 text-cyan-300">
-                    <Smartphone className="h-6 w-6" />
+
+                  <p className="featured-15">
+                    Sistema web desenvolvido para uma loja de
+                    autopeças, com catálogo de produtos, páginas
+                    de detalhes e funcionalidades de gerenciamento.
+                    O projeto prioriza organização, usabilidade
+                    e uma interface responsiva.
+                  </p>
+
+                  <div className="featured-16">
+                    {[
+                      "React",
+                      "TypeScript",
+                      "Node.js",
+                      "Supabase",
+                      "Vercel",
+                      "Render",
+                    ].map((tech) => (
+                      <span
+                        key={tech}
+                        className="featured-17"
+                      >
+                        {tech}
+                      </span>
+                    ))}
                   </div>
+
+                  <a
+                    href={CAMPO_PECAS_URL}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="featured-18"
+                  >
+                    Acessar Campo Peças
+                    <ArrowUpRight className="header-11" />
+                  </a>
                 </div>
 
-                <p className="mt-5 leading-7 text-slate-300">
-                  Aplicativo de adoção de pets com cadastro de usuários,
-                  cadastro de animais, filtros inteligentes e integração
-                  completa com back-end.
-                </p>
+                {/* ILUSTRAÇÃO DO SISTEMA */}
+                <div className="featured-19">
+                  <div className="featured-20">
+                    <div className="featured-21">
+                      <span className="featured-22" />
+                      <span className="featured-23" />
+                      <span className="featured-24" />
+                    </div>
 
-                <div className="mt-6 grid gap-3">
-                  <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-                    <p className="font-semibold text-white">📱 Mobile</p>
-                    <p className="mt-1 text-sm text-slate-400">
-                      React Native com foco em experiência do usuário
-                    </p>
-                  </div>
-                  <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-                    <p className="font-semibold text-white">⚙️ Back-end</p>
-                    <p className="mt-1 text-sm text-slate-400">
-                      API com Node.js, TypeScript
-                    </p>
-                  </div>
-                  <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-                    <p className="font-semibold text-white">🗄️ Banco de dados</p>
-                    <p className="mt-1 text-sm text-slate-400">
-                      Modelagem e persistência com MySQL
-                    </p>
-                  </div>
-                </div>
-
-                <div className="mt-6 flex flex-wrap gap-2">
-                  {["React Native", "Node.js", "MySQL"].map((item) => (
-                    <span
-                      key={item}
-                      className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-sm text-cyan-200"
-                    >
-                      {item}
+                    <span className="featured-25">
+                      campopecas.com.br
                     </span>
-                  ))}
+
+                    <ExternalLink className="featured-26" />
+                  </div>
+
+                  <div className="featured-27">
+                    <div className="featured-28">
+                      <PackageSearch className="header-11" />
+                      <span className="featured-29">
+                        CAMPO PEÇAS
+                      </span>
+                    </div>
+
+                    <div className="featured-30">
+                      <Search className="featured-31" />
+                      Buscar por peças (Scania, Volvo e Carreta)
+                    </div>
+
+                    <div className="featured-32">
+                      {[
+                        { icon: Layers3, name: "Catálogo" },
+                        { icon: Search, name: "Busca" },
+                        { icon: MonitorSmartphone, name: "Responsivo" },
+                      ].map(({ icon: Icon, name }) => (
+                        <div key={name} className="featured-33">
+                          <Icon className="featured-34" />
+                          <span className="featured-35">
+                            {name}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </motion.div>
         </section>
 
-        <div className="flex justify-center pb-6">
+        <div className="featured-36">
           <a
             href="#sobre"
-            className="animate-bounce rounded-full border border-white/10 bg-white/5 p-3 text-slate-300"
+            aria-label="Ir para Sobre"
+            className="featured-37"
           >
-            <ChevronDown className="h-5 w-5" />
+            <ArrowDown className="featured-38" />
           </a>
         </div>
 
-        <section id="sobre" className="mx-auto max-w-6xl px-6 py-12">
+        {/* SOBRE */}
+        <section id="sobre" className="about-01">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
             variants={fadeUp}
-            className="grid gap-6 md:grid-cols-3"
+            transition={{ duration: 0.5 }}
+            className="about-02"
           >
-            <div>
-              <p className="text-sm uppercase tracking-[0.25em] text-cyan-300">
+            <div className="about-03">
+              <p className="about-04">
                 Sobre
               </p>
-              <h2 className="mt-3 text-3xl font-black">Quem sou eu</h2>
 
-              {/* FOTO ABAIXO DO TÍTULO */}
-              <div className="mt-6 flex justify-center md:justify-start">
-                <img
-                  src={fotoPerfil}
-                  alt="Foto de Gabriel"
-                  className="h-56 w-56 md:h-64 md:w-64 rounded-full border border-cyan-400/20 object-cover shadow-lg shadow-cyan-900/30"
-                />
-              </div>
+              <h2 className="about-05">
+                Quem sou eu
+              </h2>
+
+              <img
+                src={fotoPerfil}
+                alt="Foto de Gabriel Pereira do Carmo"
+                className="about-06"
+              />
             </div>
 
-            <div className="rounded-4xl border border-white/10 bg-linear-to-br from-white/5 to-slate-900 p-8 md:col-span-2 shadow-xl shadow-cyan-900/10">
-              <div>
-                <div>
-                  <p className="leading-8 text-slate-300 text-center md:text-left">
-                    Tenho foco em desenvolvimento de software, especialmente nas
-                    áreas de front-end, mobile e back-end. Também possuo experiência
-                    com QA e testes automatizados, o que fortalece minha visão sobre
-                    qualidade, usabilidade e funcionamento das aplicações.
-                  </p>
-                  <p className="mt-4 leading-8 text-slate-300">
-                    Meu objetivo é atuar como desenvolvedor, contribuindo com
-                    projetos reais, aplicando boas práticas e evoluindo
-                    continuamente com aprendizado e consistência.
-                  </p>
-                </div>
-              </div>
+            <div className="about-07">
+              <p className="about-08">
+                Sou formado em Tecnologia em Análise e
+                Desenvolvimento de Sistemas pelo Centro
+                Universitário Integrado e atualmente curso
+                mestrado em Engenharia de Software na UTFPR.
+              </p>
+
+              <p className="about-09">
+                Possuo experiência prática em QA, testes
+                funcionais e automatizados com Cypress.
+                Também desenvolvo aplicações web e mobile,
+                buscando unir desenvolvimento de software,
+                boas práticas e qualidade.
+              </p>
+
+              <p className="about-09">
+                Entre meus projetos estão o{" "}
+                <a
+                  href={CAMPO_PECAS_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="about-10"
+                >
+                  Campo Peças
+                </a>{" "}
+                e o aplicativo de adoção de animais Pets Up.
+              </p>
             </div>
           </motion.div>
         </section>
 
-        <section id="skills" className="mx-auto max-w-6xl px-6 py-12">
+        {/* TECNOLOGIAS */}
+        <section id="skills" className="about-01">
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true }}
             variants={fadeUp}
-            className="rounded-4xl border border-white/10 bg-white/5 p-8"
+            className="about-07"
           >
-            <p className="text-sm uppercase tracking-[0.25em] text-cyan-300">
-              Skills
-            </p>
-            <h2 className="mt-3 text-3xl font-black">
+            <p className="about-04">Skills</p>
+
+            <h2 className="about-05">
               Tecnologias que utilizo
             </h2>
-            <div className="mt-8 flex flex-wrap gap-3">
+
+            <p className="skills-01">
+              Ferramentas e tecnologias presentes nos meus
+              estudos e projetos.
+            </p>
+
+            <div className="skills-02">
               {techs.map((tech, index) => (
                 <motion.span
                   key={tech}
-                  initial={{ opacity: 0, scale: 0.9 }}
+                  initial={{ opacity: 0, scale: 0.92 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.25, delay: index * 0.03 }}
-                  className="rounded-full border border-white/10 bg-slate-900 px-4 py-2 text-sm text-slate-200 shadow-lg shadow-slate-950/20"
+                  transition={{
+                    duration: 0.24,
+                    delay: index * 0.025,
+                  }}
+                  className="skills-03"
                 >
                   {tech}
                 </motion.span>
@@ -352,232 +478,442 @@ export default function PortfolioGabriel() {
           </motion.div>
         </section>
 
-        <section id="projetos" className="mx-auto max-w-6xl px-6 py-12">
+        {/* PROJETOS */}
+        <section id="projetos" className="about-01">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+          >
+            <p className="about-04">
+              Portfólio
+            </p>
+
+            <h2 className="projects-01">
+              Projetos e experiências
+            </h2>
+
+            <p className="projects-02">
+              Trabalhos que mostram minha experiência com
+              aplicações web, mobile e qualidade de software.
+            </p>
+          </motion.div>
+
+          {/* CAMPO PEÇAS */}
+          <motion.article
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+            variants={fadeUp}
+            className="projects-03"
+          >
+            <div className="projects-04">
+              <div>
+                <span className="projects-05">
+                  <CheckCircle2 className="projects-06" />
+                  Projeto principal
+                </span>
+
+                <h3 className="projects-07">
+                  Campo{" "}
+                  <span className="featured-11">
+                    Peças
+                  </span>
+                </h3>
+
+                <p className="projects-08">
+                  Sistema web desenvolvido para uma loja de
+                  autopeças, com catálogo de produtos, páginas
+                  de detalhes e funcionalidades para gerenciamento
+                  de produtos.
+                </p>
+
+                <div className="featured-16">
+                  {[
+                    "React",
+                    "TypeScript",
+                    "Node.js",
+                    "Supabase",
+                    "Vercel",
+                    "Render",
+                  ].map((tech) => (
+                    <span
+                      key={tech}
+                      className="projects-09"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                <a
+                  href={CAMPO_PECAS_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="projects-10"
+                >
+                  Visitar Campo Peças
+                  <ArrowUpRight className="hero-10" />
+                </a>
+              </div>
+
+              <div className="projects-11">
+                {[
+                  {
+                    icon: PackageSearch,
+                    title: "Catálogo de produtos",
+                    text: "Listagem e organização de peças",
+                  },
+                  {
+                    icon: Search,
+                    title: "Busca de produtos",
+                    text: "Facilidade para encontrar peças",
+                  },
+                  {
+                    icon: MonitorSmartphone,
+                    title: "Interface responsiva",
+                    text: "Experiência para computador e celular",
+                  },
+                ].map(({ icon: Icon, title, text }) => (
+                  <div key={title} className="projects-12">
+                    <div className="projects-13">
+                      <Icon className="header-11" />
+                    </div>
+
+                    <div>
+                      <p className="projects-14">
+                        {title}
+                      </p>
+                      <p className="projects-15">
+                        {text}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.article>
+
+          {/* OUTROS PROJETOS */}
+          <div className="projects-16">
+
+            {/* PETS UP */}
+            <motion.article
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeUp}
+              className="projects-17"
+            >
+              <div className="projects-18">
+                <Smartphone className="projects-19" />
+              </div>
+
+              <h3 className="projects-20">
+                Pets Up
+              </h3>
+
+              <p className="projects-21">
+                Aplicativo mobile para adoção de pets,
+                conectando pessoas interessadas em adotar
+                a quem procura um novo lar para seus animais.
+              </p>
+
+              <ul className="projects-22">
+                <li>• Cadastro de usuários e animais</li>
+                <li>• Filtros de busca e localização</li>
+                <li>• Integração com API e banco de dados</li>
+              </ul>
+
+              <div className="featured-16">
+                {[
+                  "React Native",
+                  "TypeScript",
+                  "Node.js",
+                  "MySQL",
+                ].map((tech) => (
+                  <span
+                    key={tech}
+                    className="projects-23"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+
+              <div className="projects-24">
+                <button
+                  type="button"
+                  aria-expanded={openProject}
+                  onClick={() => setOpenProject(!openProject)}
+                  className="projects-25"
+                >
+                  Ver repositórios
+                  <ChevronDown
+                    className={`h-4 w-4 transition-transform ${
+                      openProject ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+
+                {openProject && (
+                  <div className="projects-26">
+                    <a
+                      href="https://github.com/GabrielPdoCarmo/TCC---Front"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="projects-27"
+                    >
+                      Front-end
+                    </a>
+
+                    <a
+                      href="https://github.com/GabrielPdoCarmo/TCC---Back"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="projects-27"
+                    >
+                      Back-end
+                    </a>
+                  </div>
+                )}
+              </div>
+            </motion.article>
+
+            {/* QA E TESTES */}
+            <motion.article
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeUp}
+              className="projects-17"
+            >
+              <div className="projects-18">
+                <ShieldCheck className="projects-19" />
+              </div>
+
+              <h3 className="projects-20">
+                QA e Testes
+              </h3>
+
+              <p className="projects-21">
+                Experiência profissional em Qualidade de
+                Software, com testes manuais e automatizados
+                para validação de fluxos críticos.
+              </p>
+
+              <ul className="projects-22">
+                <li>• Automação de testes com Cypress</li>
+                <li>• Identificação e acompanhamento de falhas</li>
+                <li>• Validação de sistemas antes da publicação</li>
+              </ul>
+
+              <div className="featured-16">
+                {[
+                  "Cypress",
+                  "TypeScript",
+                  "QA",
+                  "Testes Funcionais",
+                ].map((tech) => (
+                  <span
+                    key={tech}
+                    className="projects-23"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+
+              <div className="projects-28">
+                <ShieldCheck className="hero-10" />
+                Experiência em qualidade de software
+              </div>
+            </motion.article>
+          </div>
+        </section>
+
+        {/* ESPECIALIDADES */}
+        <section className="specialties-01">
+          {[
+            {
+              icon: Code2,
+              title: "Desenvolvimento",
+              text: "Interfaces web e mobile com foco em usabilidade, performance e organização.",
+            },
+            {
+              icon: Database,
+              title: "Back-end & Dados",
+              text: "Desenvolvimento de sistemas, integração de serviços e bancos de dados.",
+            },
+            {
+              icon: ShieldCheck,
+              title: "Qualidade",
+              text: "Testes funcionais e automatizados para aplicações mais confiáveis.",
+            },
+          ].map(({ icon: Icon, title, text }) => (
+            <div key={title} className="specialties-02">
+              <div className="specialties-03">
+                <Icon className="projects-19" />
+              </div>
+
+              <h3 className="specialties-04">
+                {title}
+              </h3>
+
+              <p className="specialties-05">
+                {text}
+              </p>
+            </div>
+          ))}
+        </section>
+
+        {/* CURRÍCULO */}
+        <section id="curriculo" className="resume-01">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.15 }}
             variants={fadeUp}
+            transition={{ duration: 0.5 }}
+            className="resume-02"
           >
-            <p className="text-sm uppercase tracking-[0.25em] text-cyan-300">
-              Projetos
-            </p>
-            <h2 className="mt-3 text-3xl font-black">
-              Projetos e experiências
-            </h2>
-            <p className="mt-3 max-w-2xl text-slate-400">
-              Uma seleção de trabalhos que demonstram meu perfil técnico,
-              experiência prática e evolução como desenvolvedor.
-            </p>
-          </motion.div>
-
-          <div className="mt-8 grid gap-6 lg:grid-cols-3">
-            {projects.map((project, index) => (
-              <motion.article
-                key={project.title}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.15 }}
-                custom={index}
-                variants={fadeUp}
-                className="group rounded-4xl border border-white/10 bg-white/5 p-6 transition hover:-translate-y-1 hover:border-cyan-400/30 hover:bg-white/[0.07]"
-              >
-                <div className="flex items-center justify-between">
-                  <div className="rounded-2xl border border-cyan-400/20 bg-cyan-400/10 p-3 text-cyan-300">
-                    {project.icon}
-                  </div>
-                </div>
-
-                <h3 className="mt-5 text-2xl font-bold text-white">
-                  {project.title}
-                </h3>
-                <p className="mt-4 text-sm leading-7 text-slate-300">
-                  {project.description}
-                </p>
-
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {project.stack.map((item) => (
-                    <span
-                      key={item}
-                      className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-xs text-cyan-200"
-                    >
-                      {item}
-                    </span>
-                  ))}
-                </div>
-
-                <ul className="mt-5 space-y-2 text-sm text-slate-300">
-                  {project.highlights.map((highlight) => (
-                    <li key={highlight}>• {highlight}</li>
-                  ))}
-                </ul>
-
-                <div className="mt-6 flex gap-3">
-  {"frontend" in project && "backend" in project && (
-    <div className="relative">
-      <button
-        onClick={() =>
-          setOpenProject(openProject === index ? null : index)
-        }
-        className="rounded-xl bg-cyan-400 px-4 py-2 text-sm font-semibold text-slate-950 transition hover:brightness-110"
-      >
-        Ver Repositórios
-      </button>
-
-      {openProject === index && (
-        <div className="absolute left-0 top-full z-20 mt-2 w-44 overflow-hidden rounded-xl border border-white/10 bg-slate-900 shadow-xl">
-          <a
-            href={project.frontend}
-            target="_blank"
-            rel="noreferrer"
-            className="block px-4 py-3 text-sm text-white hover:bg-white/10"
-          >
-            Front-end
-          </a>
-
-          <a
-            href={project.backend}
-            target="_blank"
-            rel="noreferrer"
-            className="block px-4 py-3 text-sm text-white hover:bg-white/10"
-          >
-            Back-end
-          </a>
-        </div>
-      )}
-    </div>
-  )}
-
-  {"link" in project && project.link !== "#" && (
-    <a
-      href={project.link}
-      target="_blank"
-      rel="noreferrer"
-      className="rounded-xl bg-cyan-400 px-4 py-2 text-sm font-semibold text-slate-950 transition hover:brightness-110"
-    >
-      Visitar site
-    </a>
-  )}
-</div>
-              </motion.article>
-            ))}
-          </div>
-        </section>
-
-        <section className="mx-auto max-w-6xl px-6 py-12">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={fadeUp}
-            className="grid gap-6 md:grid-cols-3"
-          >
-            <div className="rounded-4xl border border-white/10 bg-white/5 p-6">
-              <div className="mb-4 inline-flex rounded-2xl border border-cyan-400/20 bg-cyan-400/10 p-3 text-cyan-300">
-                <Code2 className="h-6 w-6" />
+            <div className="header-14">
+              <div className="resume-03">
+                <FileText className="resume-04" />
               </div>
-              <h3 className="text-xl font-bold">Desenvolvimento</h3>
-              <p className="mt-3 text-sm leading-7 text-slate-300">
-                Construção de interfaces web e mobile com foco em organização,
-                performance e experiência do usuário.
+
+              <p className="resume-05">
+                Minha trajetória profissional
               </p>
-            </div>
 
-            <div className="rounded-4xl border border-white/10 bg-white/5 p-6">
-              <div className="mb-4 inline-flex rounded-2xl border border-cyan-400/20 bg-cyan-400/10 p-3 text-cyan-300">
-                <Database className="h-6 w-6" />
-              </div>
-              <h3 className="text-xl font-bold">Back-end & Dados</h3>
-              <p className="mt-3 text-sm leading-7 text-slate-300">
-                Criação de APIs, integração com banco de dados e estruturação de
-                sistemas completos com persistência de dados.
+              <h2 className="projects-01">
+                Meu Currículo
+              </h2>
+
+              <p className="resume-06">
+                Conheça minha formação acadêmica,
+                experiências profissionais, conhecimentos
+                técnicos e projetos desenvolvidos na área
+                de tecnologia.
               </p>
-            </div>
 
-            <div className="rounded-4xl border border-white/10 bg-white/5 p-6">
-              <div className="mb-4 inline-flex rounded-2xl border border-cyan-400/20 bg-cyan-400/10 p-3 text-cyan-300">
-                <ShieldCheck className="h-6 w-6" />
+              <div className="resume-07">
+                {[
+                  "TADS - Integrado",
+                  "Mestrado - UTFPR",
+                  "Experiência em QA",
+                  "Desenvolvimento de Software",
+                ].map((item) => (
+                  <span
+                    key={item}
+                    className="resume-08"
+                  >
+                    {item}
+                  </span>
+                ))}
               </div>
-              <h3 className="text-xl font-bold">Qualidade</h3>
-              <p className="mt-3 text-sm leading-7 text-slate-300">
-                Experiência com testes automatizados e validação funcional para
-                melhorar confiabilidade e qualidade do produto.
+
+              <div className="resume-09">
+                <a
+                  href={CURRICULO_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="resume-10"
+                >
+                  <Eye className="header-11" />
+                  Visualizar currículo
+                </a>
+
+                <a
+                  href={CURRICULO_URL}
+                  download="Curriculo_Gabriel_Pereira_do_Carmo.pdf"
+                  className="resume-11"
+                >
+                  <Download className="header-11" />
+                  Baixar currículo PDF
+                </a>
+              </div>
+
+              <p className="resume-12">
+                Documento em formato PDF
               </p>
             </div>
           </motion.div>
         </section>
 
-        <section id="contato" className="mx-auto max-w-6xl px-6 py-16">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={fadeUp}
-            className="overflow-hidden rounded-4xl border border-cyan-400/20 bg-linear-to-br from-cyan-400/10 via-slate-900 to-slate-950 p-8"
-          >
-            <p className="text-sm uppercase tracking-[0.25em] text-cyan-300">
+        {/* CONTATO */}
+        <section id="contato" className="contact-01">
+          <div className="contact-02">
+            <p className="about-04">
               Contato
             </p>
-            <h2 className="mt-3 text-3xl font-black">Vamos conversar</h2>
-            <p className="mt-4 max-w-2xl leading-8 text-slate-300">
-              Busco oportunidades na área de desenvolvimento para aplicar meus
-              conhecimentos, evoluir profissionalmente e contribuir com soluções
-              reais e de qualidade.
+
+            <h2 className="projects-01">
+              Vamos conversar?
+            </h2>
+
+            <p className="contact-03">
+              Busco oportunidades em desenvolvimento de software
+              e qualidade para aplicar meus conhecimentos,
+              contribuir com projetos reais e evoluir
+              profissionalmente.
             </p>
 
-            <div className="mt-8 grid gap-4 md:grid-cols-4">
+            <div className="contact-04">
+              {[
+                {
+                  label: "E-mail",
+                  caption: "Enviar mensagem",
+                  href: "mailto:gabrielcarmobr19@gmail.com",
+                  icon: Mail,
+                },
+                {
+                  label: "LinkedIn",
+                  caption: "Meu perfil",
+                  href: "https://www.linkedin.com/in/gabriel-carmo-077801309/",
+                  icon: FaLinkedin,
+                },
+                {
+                  label: "GitHub",
+                  caption: "Meus códigos",
+                  href: "https://github.com/GabrielPdoCarmo",
+                  icon: FaGithub,
+                },
+                {
+                  label: "WhatsApp",
+                  caption: "Enviar mensagem",
+                  href: WHATSAPP_URL,
+                  icon: FaWhatsapp,
+                },
+              ].map(({ label, caption, href, icon: Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target={href.startsWith("mailto:") ? undefined : "_blank"}
+                  rel={href.startsWith("mailto:") ? undefined : "noreferrer"}
+                  className="contact-05 group"
+                >
+                  <Icon className="contact-06" />
 
-              {/* EMAIL */}
-              <a
-                href="mailto:gabrielcarmobr19@gmail.com"
-                className="group flex flex-col items-center justify-center gap-3 rounded-3xl border border-white/10 bg-slate-950/60 p-6 transition hover:border-cyan-400/30 hover:bg-slate-900/80"
-              >
-                <Mail className="h-8 w-8 text-cyan-300 transition group-hover:scale-110" />
-                <p className="text-sm text-slate-400">Email</p>
-              </a>
+                  <span className="contact-07">
+                    {label}
+                  </span>
 
-              {/* LINKEDIN */}
-              <a
-                href="https://www.linkedin.com/in/gabriel-carmo-077801309/"
-                target="_blank"
-                rel="noreferrer"
-                className="group flex flex-col items-center justify-center gap-3 rounded-3xl border border-white/10 bg-slate-950/60 p-6 transition hover:border-cyan-400/30 hover:bg-slate-900/80"
-              >
-                <FaLinkedin className="h-8 w-8 text-cyan-300 transition group-hover:scale-110" />
-                <p className="text-sm text-slate-400">LinkedIn</p>
-              </a>
-
-              {/* GITHUB */}
-              <a
-                href="https://github.com/GabrielPdoCarmo"
-                target="_blank"
-                rel="noreferrer"
-                className="group flex flex-col items-center justify-center gap-3 rounded-3xl border border-white/10 bg-slate-950/60 p-6 transition hover:border-cyan-400/30 hover:bg-slate-900/80"
-              >
-                <FaGithub className="h-8 w-8 text-cyan-300 transition group-hover:scale-110" />
-                <p className="text-sm text-slate-400">GitHub</p>
-              </a>
-
-              {/* WHATSAPP */}
-              <a
-                href="https://wa.me/5544999917358"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Contato pelo WhatsApp: (44) 99991-7358"
-                className="group flex flex-col items-center justify-center gap-3 rounded-3xl border border-white/10 bg-slate-950/60 p-6 transition hover:border-green-400/30 hover:bg-slate-900/80"
-              >
-                <FaWhatsapp className="h-8 w-8 text-green-400 transition group-hover:scale-110" />
-                <p className="text-sm text-slate-400">WhatsApp</p>
-              </a>
-
+                  <span className="contact-08">
+                    {caption}
+                  </span>
+                </a>
+              ))}
             </div>
-          </motion.div>
+          </div>
         </section>
       </main>
 
-      <footer className="border-t border-white/10 px-6 py-8 text-center text-sm text-slate-500">
-        © 2026 Gabriel Pereira do Carmo. Desenvolvido para destacar projetos,
-        habilidades e oportunidades na área de tecnologia.
+      {/* RODAPÉ */}
+      <footer className="footer-01">
+        © 2026 Gabriel Pereira do Carmo.
+        Portfólio de desenvolvimento de software.
       </footer>
     </div>
   );
