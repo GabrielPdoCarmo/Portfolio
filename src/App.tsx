@@ -41,6 +41,7 @@ const WHATSAPP_URL = "https://wa.me/5544999917358";
 const CURRICULO_URL = "/curriculo-gabriel.pdf";
 
 // TECNOLOGIAS
+
 const techs = [
   "React",
   "React Native",
@@ -55,6 +56,7 @@ const techs = [
   "GitHub",
   "HTML",
   "CSS",
+  "API REST",
 ];
 
 const fadeUp = {
@@ -609,10 +611,10 @@ export default function PortfolioGabriel() {
               <div className="projects-18">
                 <Smartphone className="projects-19" />
               </div>
-
-              <h3 className="projects-20">
-                Pets Up
-              </h3>
+            
+<h3 className="projects-20">
+  Pets Up (TCC)
+</h3>
 
               <p className="projects-21">
                 Aplicativo mobile para adoção de pets,
@@ -626,21 +628,23 @@ export default function PortfolioGabriel() {
                 <li>• Integração com API e banco de dados</li>
               </ul>
 
-              <div className="featured-16">
-                {[
-                  "React Native",
-                  "TypeScript",
-                  "Node.js",
-                  "MySQL",
-                ].map((tech) => (
-                  <span
-                    key={tech}
-                    className="projects-23"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
+              
+<div className="featured-16">
+  {[
+    "React Native",
+    "TypeScript",
+    "Node.js",
+    "MySQL",
+    "API REST",
+  ].map((tech) => (
+    <span
+      key={tech}
+      className="projects-23"
+    >
+      {tech}
+    </span>
+  ))}
+</div>
 
               <div className="projects-24">
                 <button
