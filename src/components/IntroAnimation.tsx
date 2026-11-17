@@ -4,252 +4,231 @@ import { AnimatePresence, motion } from "framer-motion";
 import logoGP from "../assets/logo-gp.png";
 import "./IntroAnimation.css";
 
-const STORAGE_KEY = "gp-intro-seen-v2";
+const STORAGE_KEY = "gp-intro-seen-v3";
 const INTRO_DURATION = 2700;
-const MAX_LOADING_TIME = 2500;
+
+type IntroPhase = "loading" | "playing" | "hidden";
+
+function getInitialPhase(): IntroPhase {
+  if (typeof window === "undefined") return "hidden";
+
+  try {
+    if (sessionStorage.getItem(STORAGE_KEY) === "1") {
+      return "hidden";
+    }
+
+    if (
+      window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches
+    ) {
+      return "hidden";
+    }
+
+    return "loading";
+  } catch {
+    return "hidden";
+  }
+}
 
 export default function IntroAnimation() {
-  const [showIntro, setShowIntro] = useState(false);
-  const [ready, setReady] = useState(false);
+  const [phase, setPhase] = useState<IntroPhase>(
+    getInitialPhase
+  );
 
   const finishIntro = () => {
     try {
       sessionStorage.setItem(STORAGE_KEY, "1");
     } catch {
-      // Continua normalmente.
+      // O site continua funcionando.
     }
 
-    setShowIntro(false);
+    setPhase("hidden");
   };
 
-  // Carrega e decodifica a logo antes da animação
+  // Carrega a imagem antes de iniciar.
   useEffect(() => {
+    if (phase !== "loading") return;
+
     let cancelled = false;
-    let loadingTimer: number;
-
-    try {
-      if (sessionStorage.getItem(STORAGE_KEY) === "1") {
-        return;
-      }
-
-      if (
-        window.matchMedia(
-          "(prefers-reduced-motion: reduce)"
-        ).matches
-      ) {
-        return;
-      }
-    } catch {
-      return;
-    }
+    let started = false;
 
     const image = new Image();
 
-    // Evita bloquear a página se a imagem estiver lenta
-    loadingTimer = window.setTimeout(() => {
+    const timeout = window.setTimeout(() => {
+      if (!cancelled) finishIntro();
+    }, 3000);
+
+    const start = async () => {
+      if (started || cancelled) return;
+      started = true;
+
+      try {
+        await image.decode();
+      } catch {
+        if (!image.naturalWidth) {
+          if (!cancelled) finishIntro();
+          return;
+        }
+      }
+
       if (cancelled) return;
 
-      cancelled = true;
-
-      try {
-        sessionStorage.setItem(STORAGE_KEY, "1");
-      } catch {
-        // Ignora bloqueio do armazenamento
-      }
-    }, MAX_LOADING_TIME);
-
-    const startAnimation = async () => {
-      try {
-        if (image.decode) {
-          await image.decode();
-        }
-
-        if (cancelled) return;
-
-        window.clearTimeout(loadingTimer);
-        setReady(true);
-        setShowIntro(true);
-      } catch {
-        window.clearTimeout(loadingTimer);
-      }
+      window.clearTimeout(timeout);
+      setPhase("playing");
     };
 
     image.onload = () => {
-      void startAnimation();
+      void start();
     };
 
     image.onerror = () => {
-      window.clearTimeout(loadingTimer);
+      if (!cancelled) finishIntro();
     };
 
     image.src = logoGP;
 
     if (image.complete && image.naturalWidth > 0) {
-      void startAnimation();
+      void start();
     }
 
     return () => {
       cancelled = true;
-      window.clearTimeout(loadingTimer);
+      window.clearTimeout(timeout);
       image.onload = null;
       image.onerror = null;
     };
   }, []);
 
-  // Inicia a contagem somente quando a imagem está pronta
   useEffect(() => {
-    if (!showIntro || !ready) return;
+    if (phase !== "playing") return;
 
-    const timer = window.setTimeout(() => {
-      finishIntro();
-    }, INTRO_DURATION);
+    const timer = window.setTimeout(
+      finishIntro,
+      INTRO_DURATION
+    );
 
     return () => window.clearTimeout(timer);
-  }, [showIntro, ready]);
+  }, [phase]);
 
   const rays = Array.from(
-    { length: 12 },
+    { length: 8 },
     (_, index) => index
   );
 
   return (
     <AnimatePresence>
-      {showIntro && ready && (
+      {phase !== "hidden" && (
         <motion.div
           className="gp-intro"
           initial={{ opacity: 1 }}
           animate={{ opacity: 1 }}
           exit={{
             opacity: 0,
-            transition: {
-              duration: 0.4,
-              ease: "easeOut",
-            },
+            transition: { duration: 0.4 },
           }}
-          aria-label="Animação de abertura GP"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Abertura do portfólio GP"
         >
-          {/* FUNDO */}
           <div className="gp-intro-background" />
 
-          {/* ANÉIS */}
-          <div className="gp-energy-ring gp-ring-one" />
-          <div className="gp-energy-ring gp-ring-two" />
-          <div className="gp-energy-ring gp-ring-three" />
+          {phase === "playing" && (
+            <>
+              {/* ÁREA CENTRAL DA TRANSFORMAÇÃO */}
+              <div className="gp-stage">
 
-          {/* RAIOS VERDES */}
-          <div className="gp-rays">
-            {rays.map((index) => (
-              <span
-                key={index}
-                className="gp-ray"
-                style={{
-                  transform: `rotate(${index * 30}deg)`,
-                  animationDelay: `${
-                    0.7 + index * 0.035
-                  }s`,
-                }}
-              />
-            ))}
-          </div>
+                {/* ANÉIS VERDES */}
+                <div className="gp-energy-ring gp-ring-one" />
+                <div className="gp-energy-ring gp-ring-two" />
+                <div className="gp-energy-ring gp-ring-three" />
 
-          {/* RELÂMPAGOS */}
-          <svg
-            className="gp-lightning"
-            viewBox="0 0 1000 700"
-            preserveAspectRatio="none"
-            aria-hidden="true"
-          >
-            <g
-              fill="none"
-              stroke="#80ff3b"
-              strokeWidth="5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <polyline
-                className="gp-bolt gp-bolt-one"
-                points="0,65 180,150 135,210 350,265 500,350"
-              />
+                {/* RAIOS DE ENERGIA */}
+                <div className="gp-rays">
+                  {rays.map((index) => (
+                    <span
+                      key={index}
+                      className="gp-ray-wrapper"
+                      style={{
+                        transform: `rotate(${index * 45}deg)`,
+                      }}
+                    >
+                      <span
+                        className="gp-ray"
+                        style={{
+                          animationDelay:
+                            `${0.55 + index * 0.05}s`,
+                        }}
+                      />
+                    </span>
+                  ))}
+                </div>
 
-              <polyline
-                className="gp-bolt gp-bolt-two"
-                points="1000,70 800,160 850,215 620,280 500,350"
-              />
+                {/* RELÂMPAGOS PRÓXIMOS À LOGO */}
+                <svg
+                  className="gp-lightning"
+                  viewBox="0 0 400 400"
+                  aria-hidden="true"
+                >
+                  <g
+                    fill="none"
+                    stroke="#87ff42"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <polyline
+                      className="gp-bolt gp-bolt-one"
+                      points="0,70 75,120 55,155 140,180"
+                    />
 
-              <polyline
-                className="gp-bolt gp-bolt-three"
-                points="0,630 190,525 155,465 390,400 500,350"
-              />
+                    <polyline
+                      className="gp-bolt gp-bolt-two"
+                      points="400,70 325,120 345,155 260,180"
+                    />
 
-              <polyline
-                className="gp-bolt gp-bolt-four"
-                points="1000,640 800,520 845,445 610,390 500,350"
-              />
+                    <polyline
+                      className="gp-bolt gp-bolt-three"
+                      points="0,330 75,280 55,245 140,220"
+                    />
 
-              <polyline
-                className="gp-bolt gp-bolt-five"
-                points="500,0 455,105 545,170 475,255 500,350"
-              />
+                    <polyline
+                      className="gp-bolt gp-bolt-four"
+                      points="400,330 325,280 345,245 260,220"
+                    />
+                  </g>
+                </svg>
 
-              <polyline
-                className="gp-bolt gp-bolt-six"
-                points="500,700 545,595 460,530 525,440 500,350"
-              />
-            </g>
-          </svg>
+                {/* EMBLEMA GP */}
+                <div className="gp-logo-container">
+                  <div className="gp-logo-aura" />
 
-          {/* PARTÍCULAS */}
-          <div
-            className="gp-particles"
-            aria-hidden="true"
-          >
-            {Array.from(
-              { length: 12 },
-              (_, index) => (
-                <span
-                  key={index}
-                  className="gp-particle"
-                  style={{
-                    left: `${
-                      (index * 37 + 13) % 100
-                    }%`,
-                    top: `${
-                      (index * 23 + 17) % 100
-                    }%`,
-                    animationDelay: `${
-                      index * 0.1
-                    }s`,
-                  }}
-                />
-              )
-            )}
-          </div>
+                  <img
+                    src={logoGP}
+                    alt="Emblema GP"
+                    className="gp-intro-logo"
+                    draggable={false}
+                  />
+                </div>
 
-          {/* EMBLEMA */}
-          <div className="gp-logo-container">
-            <div className="gp-logo-aura" />
+              </div>
 
-            <img
-              src={logoGP}
-              alt="Emblema GP"
-              className="gp-intro-logo"
-              decoding="async"
-            />
+              {/* TEXTO */}
+              <div className="gp-intro-caption">
+                INICIANDO SISTEMA GP
+              </div>
 
-            <div className="gp-logo-orbit" />
-          </div>
+              {/* CLARÃO FINAL */}
+              <div className="gp-final-flash" />
+            </>
+          )}
 
-          {/* TEXTO */}
-          <div className="gp-intro-caption">
-            <span className="gp-caption-line" />
-            <span>INICIANDO SISTEMA GP</span>
-            <span className="gp-caption-line" />
-          </div>
+          {phase === "loading" && (
+            <div className="gp-loading">
+              Preparando transformação GP...
+            </div>
+          )}
 
-          {/* EXPLOSÃO FINAL */}
-          <div className="gp-final-flash" />
-
-          {/* PULAR */}
           <button
             type="button"
             className="gp-skip-button"
