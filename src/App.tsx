@@ -34,6 +34,7 @@ import {
 import logoGP from "./assets/logo-gp.png";
 import fotoPerfil from "./assets/perfil.png";
 import "./App.css";
+import IntroAnimation from "./components/IntroAnimation";
 
 // LINKS
 const CAMPO_PECAS_URL = "https://www.campopecas.com.br/";
@@ -100,7 +101,7 @@ export default function PortfolioGabriel() {
 
   return (
     <div className="base-01">
-
+    <IntroAnimation />
       {/* FUNDO */}
       <div className="background-01">
         <div className="background-02" />
