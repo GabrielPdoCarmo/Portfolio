@@ -4,70 +4,134 @@ import { AnimatePresence, motion } from "framer-motion";
 import logoGP from "../assets/logo-gp.png";
 import "./IntroAnimation.css";
 
-const STORAGE_KEY = "gp-intro-seen-v1";
+const STORAGE_KEY = "gp-intro-seen-v2";
 const INTRO_DURATION = 2700;
-
-function shouldPlayIntro() {
-  if (typeof window === "undefined") return false;
-
-  try {
-    const alreadySeen =
-      window.sessionStorage.getItem(STORAGE_KEY) === "1";
-
-    const reduceMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-
-    return !alreadySeen && !reduceMotion;
-  } catch {
-    return false;
-  }
-}
+const MAX_LOADING_TIME = 2500;
 
 export default function IntroAnimation() {
-  const [showIntro, setShowIntro] = useState(
-    shouldPlayIntro
-  );
+  const [showIntro, setShowIntro] = useState(false);
+  const [ready, setReady] = useState(false);
 
   const finishIntro = () => {
     try {
-      window.sessionStorage.setItem(STORAGE_KEY, "1");
+      sessionStorage.setItem(STORAGE_KEY, "1");
     } catch {
-      // Continua normalmente se o armazenamento estiver bloqueado.
+      // Continua normalmente.
     }
 
     setShowIntro(false);
   };
 
+  // Carrega e decodifica a logo antes da animação
   useEffect(() => {
-    if (!showIntro) return;
+    let cancelled = false;
+    let loadingTimer: number;
+
+    try {
+      if (sessionStorage.getItem(STORAGE_KEY) === "1") {
+        return;
+      }
+
+      if (
+        window.matchMedia(
+          "(prefers-reduced-motion: reduce)"
+        ).matches
+      ) {
+        return;
+      }
+    } catch {
+      return;
+    }
+
+    const image = new Image();
+
+    // Evita bloquear a página se a imagem estiver lenta
+    loadingTimer = window.setTimeout(() => {
+      if (cancelled) return;
+
+      cancelled = true;
+
+      try {
+        sessionStorage.setItem(STORAGE_KEY, "1");
+      } catch {
+        // Ignora bloqueio do armazenamento
+      }
+    }, MAX_LOADING_TIME);
+
+    const startAnimation = async () => {
+      try {
+        if (image.decode) {
+          await image.decode();
+        }
+
+        if (cancelled) return;
+
+        window.clearTimeout(loadingTimer);
+        setReady(true);
+        setShowIntro(true);
+      } catch {
+        window.clearTimeout(loadingTimer);
+      }
+    };
+
+    image.onload = () => {
+      void startAnimation();
+    };
+
+    image.onerror = () => {
+      window.clearTimeout(loadingTimer);
+    };
+
+    image.src = logoGP;
+
+    if (image.complete && image.naturalWidth > 0) {
+      void startAnimation();
+    }
+
+    return () => {
+      cancelled = true;
+      window.clearTimeout(loadingTimer);
+      image.onload = null;
+      image.onerror = null;
+    };
+  }, []);
+
+  // Inicia a contagem somente quando a imagem está pronta
+  useEffect(() => {
+    if (!showIntro || !ready) return;
 
     const timer = window.setTimeout(() => {
       finishIntro();
     }, INTRO_DURATION);
 
     return () => window.clearTimeout(timer);
-  }, [showIntro]);
+  }, [showIntro, ready]);
 
-  const rays = Array.from({ length: 12 }, (_, index) => index);
+  const rays = Array.from(
+    { length: 12 },
+    (_, index) => index
+  );
 
   return (
     <AnimatePresence>
-      {showIntro && (
+      {showIntro && ready && (
         <motion.div
           className="gp-intro"
           initial={{ opacity: 1 }}
           animate={{ opacity: 1 }}
           exit={{
             opacity: 0,
-            transition: { duration: 0.45, ease: "easeOut" },
+            transition: {
+              duration: 0.4,
+              ease: "easeOut",
+            },
           }}
           aria-label="Animação de abertura GP"
         >
-          {/* FUNDO DE ENERGIA */}
+          {/* FUNDO */}
           <div className="gp-intro-background" />
 
-          {/* ANÉIS DE TRANSFORMAÇÃO */}
+          {/* ANÉIS */}
           <div className="gp-energy-ring gp-ring-one" />
           <div className="gp-energy-ring gp-ring-two" />
           <div className="gp-energy-ring gp-ring-three" />
@@ -80,7 +144,9 @@ export default function IntroAnimation() {
                 className="gp-ray"
                 style={{
                   transform: `rotate(${index * 30}deg)`,
-                  animationDelay: `${0.7 + index * 0.035}s`,
+                  animationDelay: `${
+                    0.7 + index * 0.035
+                  }s`,
                 }}
               />
             ))}
@@ -93,27 +159,7 @@ export default function IntroAnimation() {
             preserveAspectRatio="none"
             aria-hidden="true"
           >
-            <defs>
-              <filter
-                id="gp-lightning-glow"
-                x="-100%"
-                y="-100%"
-                width="300%"
-                height="300%"
-              >
-                <feGaussianBlur
-                  stdDeviation="7"
-                  result="blur"
-                />
-                <feMerge>
-                  <feMergeNode in="blur" />
-                  <feMergeNode in="SourceGraphic" />
-                </feMerge>
-              </filter>
-            </defs>
-
             <g
-              filter="url(#gp-lightning-glow)"
               fill="none"
               stroke="#80ff3b"
               strokeWidth="5"
@@ -153,21 +199,33 @@ export default function IntroAnimation() {
           </svg>
 
           {/* PARTÍCULAS */}
-          <div className="gp-particles" aria-hidden="true">
-            {Array.from({ length: 16 }, (_, index) => (
-              <span
-                key={index}
-                className="gp-particle"
-                style={{
-                  left: `${(index * 37 + 13) % 100}%`,
-                  top: `${(index * 23 + 17) % 100}%`,
-                  animationDelay: `${index * 0.1}s`,
-                }}
-              />
-            ))}
+          <div
+            className="gp-particles"
+            aria-hidden="true"
+          >
+            {Array.from(
+              { length: 12 },
+              (_, index) => (
+                <span
+                  key={index}
+                  className="gp-particle"
+                  style={{
+                    left: `${
+                      (index * 37 + 13) % 100
+                    }%`,
+                    top: `${
+                      (index * 23 + 17) % 100
+                    }%`,
+                    animationDelay: `${
+                      index * 0.1
+                    }s`,
+                  }}
+                />
+              )
+            )}
           </div>
 
-          {/* EMBLEMA GP */}
+          {/* EMBLEMA */}
           <div className="gp-logo-container">
             <div className="gp-logo-aura" />
 
@@ -175,22 +233,23 @@ export default function IntroAnimation() {
               src={logoGP}
               alt="Emblema GP"
               className="gp-intro-logo"
+              decoding="async"
             />
 
             <div className="gp-logo-orbit" />
           </div>
 
-          {/* TEXTO DE ATIVAÇÃO */}
+          {/* TEXTO */}
           <div className="gp-intro-caption">
             <span className="gp-caption-line" />
             <span>INICIANDO SISTEMA GP</span>
             <span className="gp-caption-line" />
           </div>
 
-          {/* CLARÃO FINAL */}
+          {/* EXPLOSÃO FINAL */}
           <div className="gp-final-flash" />
 
-          {/* BOTÃO PARA PULAR */}
+          {/* PULAR */}
           <button
             type="button"
             className="gp-skip-button"
